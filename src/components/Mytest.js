@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 function Mytest(props){
-    const [state, setState] = useState({name:"",age:0});
+    const [state, setState] = useState({name:"",age:0, test:""});
 
 
     useEffect( () => {
@@ -34,8 +34,8 @@ function Mytest(props){
         <p> {`test is ${state.age}`}</p>
         
         
+        <input type='text' value={state.test} onChange={e => setState({...state, test:e.target.value})}/>
         {/*
-        <input type='text' value={state.name} onChange={e => setState({...state, name:e.target.value})}/>
         <input type='number' value={state.age } onChange={e => setState({...state, age:e.target.value})}/>
         */}
         <br></br>안녕하세요! 제 이름은 <b>{props.name}</b> 입니다.
