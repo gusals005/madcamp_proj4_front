@@ -1,18 +1,11 @@
+import axios from 'axios';
 import React, { Component, useEffect, useState } from 'react';
 import {Link} from 'react-router-dom'
-import axios from 'axios';
-import Signup from './Signup';
 
-/*
-Login page
-    - Login 기능 구현 (Id 하고 pwd받아서 DB 내에 사용자인지 확인) (Get api로 확인)
-    - Login 를 하기 위한 회원가입 페이지도 만들어야 함.(POST api 만들어야 하고)
-    - Login 
-*/
-function Login(){
-    const [state, setState] = useState({userid:"",password:"", login:"waitting input."});
+function Signup(){
+    const [state, setState] = useState({userid:"",password:"",confirmPassword:"",nickname:""});
 
-    document.title = `Login`;
+    document.title = `Sign up`;
 
 
     useEffect( async () => {
@@ -37,20 +30,17 @@ function Login(){
         console.log(response);
 
         if(response.data.Message == "verified"){
-            console.log("로그인 성공");
             setState({...state, login:"success"});   
         }
         else{
-            console.log("로그인 실패");
             setState({...state, login:"fail"});   
         }
 
     }
 
     return (
-        <div>
-            <form>
-                <h3>Sign In</h3>
+        <form>
+                <h3>Sign up</h3>
 
                 <div className="form-group">
                     <label>Id</label>
@@ -60,6 +50,16 @@ function Login(){
                 <div className="form-group">
                     <label>Password</label>
                     <input type='text' value={state.password } onChange={e => setState({...state, password:e.target.value})}/>
+                </div>
+
+                <div className="form-group">
+                    <label>Confirm new password</label>
+                    <input type='text' value={state.confirmPassword } onChange={e => setState({...state, confirmPassword:e.target.value})}/>
+                </div>
+
+                <div className="form-group">
+                    <label>Nickname</label>
+                    <input type='text' value={state.nickname } onChange={e => setState({...state, nickname:e.target.value})}/>
                 </div>
 
                 {/*
@@ -73,30 +73,27 @@ function Login(){
                 */}
 
                 <button type="submit" className="btn btn-primary btn-block" onClick={loginCheck}>
-                    Submit
+                    회원가입
                     </button>
 
                 <p className="forgot-password text-right">
-                    <Link to='/signup'>Signup</Link>
+                    <Link to='/login'>Login 창으로 돌아가기</Link>
                 </p>
                 <p className="forgot-password text-right">
                     로그인 성공?? <b>{state.login}</b>
                 </p>
-
-               
             </form>
-        
-            {/*
-            <div>
-                <p> Login</p>
-                <input type='text' value={state.userid} onChange={e => setState({...state, userid:e.target.value})}/>
-                <input type='text' value={state.password } onChange={e => setState({...state, password:e.target.value})}/>
-                <br></br>로그인을 하려면 <b>{"회원가입"}</b>을 해야 합니다.
-            </div>
-            */}      
-        </div>
+      
+      /*
+      <div>
+        <p> Login</p>
+        <input type='text' value={state.userid} onChange={e => setState({...state, userid:e.target.value})}/>
+        <input type='text' value={state.password } onChange={e => setState({...state, password:e.target.value})}/>
+        <br></br>로그인을 하려면 <b>{"회원가입"}</b>을 해야 합니다.
+      </div>
+      */      
     );
 }
 
 
-export default Login;
+export default Signup;

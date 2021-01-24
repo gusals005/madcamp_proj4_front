@@ -1,15 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
-import Mytest from './components/Mytest'
-import Login from './components/Login/Login'
+import { BrowserRouter, BrowserRouter as Router,Route,  Link} from 'react-router-dom';
+import Home from './Home';
 
 function App() {
   const name = 'react';
   return (
-    <div className="App">
-    
-      <Login />
-    </div>
+    <Router>
+      <Home/>
+    </Router>
   );
 }
 
