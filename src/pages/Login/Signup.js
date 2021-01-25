@@ -85,7 +85,7 @@ function Signup(){
                     </button>
 
                 <p className="forgot-password text-right">
-                    <Link to='/login'>Login 창으로 돌아가기</Link>
+                    <Link to='/'>Login 창으로 돌아가기</Link>
                 </p>
                 <p className="forgot-password text-right">
                     회원가입 성공?? <b>{state.register}</b>
