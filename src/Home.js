@@ -11,13 +11,7 @@ const Home = () => {
                 <li>
                     <Link to='/login'>Login 클릭</Link>
                 </li>
-                <li>
-                    <Link to='/signup'>Signup 클릭</Link>
-                </li>
-            </ul>
-
-            <Route path='/login' component={Login}/>
-            <Route path='/signup' component={Signup}/>
+            </ul>            
         </div>
     )
 }

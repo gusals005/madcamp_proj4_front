@@ -3,7 +3,7 @@ import React, { Component, useEffect, useState } from 'react';
 import {Link} from 'react-router-dom'
 
 function Signup(){
-    const [state, setState] = useState({userid:"",password:"",confirmPassword:"",nickname:""});
+    const [state, setState] = useState({userid:"",password:"",confirmPassword:"",nickname:"", coin:10000, register:"loading"});
 
     document.title = `Sign up`;
 
@@ -19,23 +19,31 @@ function Signup(){
         */
     });
     
-    //login 
-    async function loginCheck(e) {
+    //회원가입 
+    async function register(e) {
         e.preventDefault();
-        console.log('The link was clicked');
-        const response = await axios.post('http://192.249.18.232:8080/login',{
-            id: state.userid,
-            password : state.password
-        });
-        console.log(response);
+        console.log('Register was clicked');
+        if(state.password === state.confirmPassword){
+            const response = await axios.post('http://192.249.18.232:8080/user/signup',{
+                user_id: state.userid,
+                password : state.password,
+                //confirmPassword: state.confirmPassword,
+                name:state.nickname,
+                coin:state.coin
+            });
+            console.log(response);
 
-        if(response.data.Message == "verified"){
-            setState({...state, login:"success"});   
+            if(response.data.message === "success"){
+                setState({...state, register:"success"});
+            }
+            else{
+                setState({...state, register:"fail"});
+            }
         }
         else{
-            setState({...state, login:"fail"});   
+            console.log('is not same between password and confirm password');
         }
-
+    
     }
 
     return (
@@ -72,7 +80,7 @@ function Signup(){
                 </div>
                 */}
 
-                <button type="submit" className="btn btn-primary btn-block" onClick={loginCheck}>
+                <button type="submit" className="btn btn-primary btn-block" onClick={register}>
                     회원가입
                     </button>
 
@@ -80,7 +88,7 @@ function Signup(){
                     <Link to='/login'>Login 창으로 돌아가기</Link>
                 </p>
                 <p className="forgot-password text-right">
-                    로그인 성공?? <b>{state.login}</b>
+                    회원가입 성공?? <b>{state.register}</b>
                 </p>
             </form>
       

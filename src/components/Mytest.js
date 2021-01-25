@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 function Mytest(props){
-    const [state, setState] = useState({name:"",age:0, test:""});
+    const [state, setState] = useState({name:"", age:0, test:""});
 
 
     useEffect( () => {

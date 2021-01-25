@@ -30,19 +30,20 @@ function Login(){
     async function loginCheck(e) {
         e.preventDefault();
         console.log('The link was clicked');
-        const response = await axios.post('http://192.249.18.232:8080/login',{
+        const response = await axios.post('http://192.249.18.232:8080/user/login',{
             id: state.userid,
             password : state.password
         });
         console.log(response);
 
-        if(response.data.Message == "verified"){
-            console.log("로그인 성공");
-            setState({...state, login:"success"});   
-        }
-        else{
+        if(response.data.message == "fail"){
             console.log("로그인 실패");
             setState({...state, login:"fail"});   
+        }
+        else{
+            console.log("로그인 성공");
+            setState({...state, login:"success"});   
+            
         }
 
     }
