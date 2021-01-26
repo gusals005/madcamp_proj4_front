@@ -133,14 +133,6 @@ const Home = () => {
             {/* Match */}
             <ul className="list-group list-group-flush" className={matchclasses.root}>
                 <MatchList matches={matches}/>
-                {/*
-                {items}
-                <li class="list-group-item">경기1</li>
-                <li class="list-group-item">경기2</li>
-                <li class="list-group-item">경기3</li>
-                <li class="list-group-item">경기4</li>
-                <li class="list-group-item">경기5</li>
-                */}
             </ul>
 
             {/* 광고 */}
