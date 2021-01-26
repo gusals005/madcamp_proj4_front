@@ -29,6 +29,7 @@ function Signup(){
                 password : state.password,
                 //confirmPassword: state.confirmPassword,
                 name:state.nickname,
+                principal:state.coin,
                 coin:state.coin
             });
             console.log(response);
