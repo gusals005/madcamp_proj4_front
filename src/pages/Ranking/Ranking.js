@@ -131,6 +131,7 @@ const Ranking = () => {
 
     return (
         <div class="col">
+            <Navbar/>
             <div class="row">
                 <div class="col-sm-6">
                     <Card className={classes.root}>

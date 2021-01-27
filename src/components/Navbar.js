@@ -1,6 +1,7 @@
 import React from 'react';
 import {Route, Link} from 'react-router-dom';
 import 'react-bootstrap/Navbar';
+import {Nav, NavItem, NavDropdown} from 'react-bootstrap';
 
 const Navbar = () => {
     return(
@@ -25,9 +26,15 @@ const Navbar = () => {
                             <li className="nav-item">
                                 <Link to='/factcheck' className="nav-link">당신이 이 사이트에서 한 짓</Link>
                             </li>
-                            <li className="nav-item">
-                                <Link to='/' className="nav-link">My page or logout</Link>
-                            </li>
+                            <NavDropdown title="My" id="nav-dropdown">
+                                <NavDropdown.Item eventKey="My page">
+                                    <Link to='/factcheck' className="nav-link">My Page</Link>
+                                </NavDropdown.Item>
+                                
+                                <NavDropdown.Item eventKey="LogOut">
+                                    <Link to='/' className="nav-link">LogOut</Link>
+                                </NavDropdown.Item>
+                            </NavDropdown>
                         </ul>
                     </div>
                 </div>

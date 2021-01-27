@@ -95,7 +95,9 @@ const Factcheck = () => {
     const bull = <span className={classes.bullet}>•</span>;
 
     return(
+        
         <div className="row">
+            <Navbar/>
             <div className="col">
                 <Card className={classes.root}>
                 <CardContent>

@@ -112,6 +112,7 @@ const Home = (props) => {
 
     return (
         <div className="row">
+            <Navbar/>
             {/* 광고 */}
             <Card className={classes.root}>
                 <CardContent>

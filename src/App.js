@@ -14,7 +14,7 @@ function App() {
   const name = 'react';
   return (
     <Router>
-      <Navbar/>
+      
       <Route exact path = '/totoking' component={Totoking}/>
       <Route exact path = '/aipick' component={Aipick}/>
       <Route exact path = '/rank' component={Ranking}/>

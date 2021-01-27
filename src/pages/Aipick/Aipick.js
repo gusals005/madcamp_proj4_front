@@ -33,7 +33,7 @@ const Aipick = () => {
 
     return(
         <div>
-            
+            <Navbar/> 
             <Card className={classes.root}>
             <CardContent>
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
