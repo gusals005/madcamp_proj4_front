@@ -10,6 +10,10 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Navbar from '../../components/Navbar'
 import {Tabs,Tab,Col,Row,Nav,NavItem} from 'react-bootstrap';
+import { useEffect } from 'react';
+import axios from 'axios';
+import { selectToken } from '../../redux/user/selector';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles({
     root: {
@@ -87,15 +91,30 @@ const useStyles2 = makeStyles({
     }
 });
 
-
-const Factcheck = () => {
+const Factcheck = (props) => {
     const classes = useStyles();
     const classes1 = useStyles1();
     const classes2 = useStyles2();
     const bull = <span className={classes.bullet}>•</span>;
+    const token = useSelector(state => {
+        return selectToken(state);
+    });
+
+    useEffect(() => {
+
+        axios.get('http://192.249.18.232:8080/user/check', {
+            headers: {
+              'x-access-token': token
+            }
+        })
+            .then((res) => {
+                console.log(res.data.message);
+                if(res.data.message == "error") props.history.push('/')
+            })
+
+    }, []);
 
     return(
-        
         <div className="row">
             <Navbar/>
             <div className="col">
