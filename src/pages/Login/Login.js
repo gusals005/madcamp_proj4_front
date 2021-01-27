@@ -4,6 +4,8 @@ import axios from 'axios';
 import Signup from './Signup';
 import './Login.css';
 import 'react-bootstrap/Form'
+import { SetUser_id, SetCoin,SetBetting,SetName,SetPrincipal, LoginSuccess} from '../../redux/user/action';
+import { useDispatch, useSelector } from 'react-redux';
 
 /*
 Login page
@@ -16,20 +18,12 @@ function Login(props){
 
     document.title = `Login`;
 
-
-    useEffect( async () => {
-        //const response = await axios.get('http://192.249.18.232:8080/');
-        //console.log(response);
-        
-        /*
-              console.log(response.data.myCollection[0]);
-              state.name = response.data.myCollection[0].test_database;
-              state.age = response.data.myCollection[0].test;
-        */
-    });
     
+    const dispatch = useDispatch();
+    
+
     //login 
-    async function loginCheck(e) {
+    async function LoginCheck(e) {
         e.preventDefault();
         console.log('The link was clicked');
         const response = await axios.post('http://192.249.18.232:8080/user/login',{
@@ -45,6 +39,24 @@ function Login(props){
         else{
             console.log("로그인 성공");
             setState({...state, login:"success"});
+            
+            //login이 성공하면, 그 유저의 정보를 가져와서 Home에 유저 정보 넘겨주기
+            //console.log(response.data.currentUser);
+            let user = response.data.currentUser;
+            
+            //token도 넣어주긴해야함.
+            let token = response.data.token;
+            console.log("token",token);
+
+            dispatch(LoginSuccess({token:token}));
+            dispatch(SetUser_id({user_id:user.user_id}));
+            console.log("찐",user.coin);
+            dispatch(SetCoin({coin:user.coin}));
+            dispatch(SetBetting({betting:user.betting}));
+            dispatch(SetName({name:user.name}));
+            dispatch(SetPrincipal({principal:user.principal}));
+
+            
             props.history.push("/home");
             
         }
@@ -71,7 +83,7 @@ function Login(props){
                 <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
                 <label class="form-check-label" for="exampleCheck1">Check me out</label>
             </div>
-                <button type="submit" class="btn btn-primary" onClick={loginCheck}>Submit</button>
+                <button type="submit" class="btn btn-primary" onClick={LoginCheck}>Submit</button>
             <p className="form-group">
                 <Link to='/signup' class="nav-link">Signup</Link>
             </p>
