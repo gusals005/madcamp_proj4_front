@@ -5,7 +5,7 @@ export const selectToken = createSelector(
     [selectAuth],
     authList => authList.jwt
   );
-export const selectUserId = createSelector(
+export const selectUser_id = createSelector(
   [selectAuth],
   authList => authList.user_id
 );

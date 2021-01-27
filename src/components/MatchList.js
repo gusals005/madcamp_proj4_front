@@ -25,6 +25,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import InputBase from '@material-ui/core/InputBase';
+import { selectUser_id, selectCoin } from '../redux/user/selector';
+import { useSelector } from 'react-redux';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -79,6 +81,7 @@ const AlertDialog = (props) => {
     const [open, setOpen] = React.useState(false);
     const [checked, setChecked] = React.useState([1]);
     const [amount,setAmount] = React.useState(0);
+    const [error_message,setError_message] = React.useState('');
     const classes = useStyles();
 
     useEffect(()=>{
@@ -98,7 +101,14 @@ const AlertDialog = (props) => {
 
     //betting
     const handleBetting = () => {
-        setOpen(false);
+        if(props.user.coin < amount){
+            setError_message("가진돈보다 많은 금액은 베팅하실 수 없습니다.");
+            setOpen(true);
+        }
+        else{
+            setError_message("");
+            setOpen(false);
+        }
         console.log(amount);
         console.log(checked);
     };
@@ -187,6 +197,9 @@ const AlertDialog = (props) => {
                     );
                 })}
             </List>
+            <DialogContentText>
+                {error_message}
+            </DialogContentText>
             
         </DialogContent>
         <DialogActions>
@@ -206,22 +219,26 @@ const AlertDialog = (props) => {
 
 const MatchList = (props) => {
     
+    let user_id = useSelector(state => {
+        return selectUser_id(state);
+    });
+    let user_coin = useSelector(state => {
+        return selectCoin(state);
+    });
     const loadList = () => {
         return props.matches.map((item) => {
             let match_date = item.match_date.split('T')[0];
             console.log(match_date);
             
             return(
-                <div>
-                    <Link to={`/${item._id}`} className="list-group-item list-group-item-action">
-                        <div className="d-flex w-100 justify-content-between">
-                        <h5 className="mb-1">{item.home} vs {item.away}</h5>
-                        <small>{match_date}</small>
-                        </div>
-                        <p className="mb-1">점수  || Home {item.home_score} : {item.away_score} Away</p>
-                        <small>배당률 || Win {item.win_odds} : {item.lose_odds} Lose</small>
-                    </Link>
-                    <AlertDialog match={item} user={props.user} />
+                <div className="list-group-item list-group-item-action">
+                    <div className="d-flex w-100 justify-content-between">
+                    <h5 className="mb-1">{item.home} vs {item.away}</h5>
+                    <small>{match_date}</small>
+                    </div>
+                    <p className="mb-1">점수  || Home {item.home_score} : {item.away_score} Away</p>
+                    <small>배당률 || Win {item.win_odds} : {item.lose_odds} Lose</small>
+                    <AlertDialog match={item} user={{coin:user_coin}} />
                 </div>
             ) 
             
@@ -237,39 +254,3 @@ const MatchList = (props) => {
 }
 
 export default MatchList;
-
-
-/*
-<div className="row">
-                <div>  
-                    <DialogContentText id="alert-dialog-description">
-                        Home 팀 베팅하기
-                    </DialogContentText>
-                    <DialogContentText id="alert-dialog-description">
-                        Away 팀 베팅하기
-                    </DialogContentText>
-                </div>
-                <div>  
-                    <DialogContentText id="alert-dialog-description">
-                        배당률 : {match.home_odds}
-                    </DialogContentText>
-                    <DialogContentText id="alert-dialog-description">
-                        배당률 : {match.away_odds}
-                    </DialogContentText>
-                </div>
-                <div>
-                    <Checkbox
-                        checked={checked}
-                        onChange={handleChange}
-                        inputProps={{ 'aria-label': 'primary checkbox' }}
-                    />
-                    <Checkbox
-                        checked={checked}
-                        onChange={handleChange}
-                        inputProps={{ 'aria-label': 'primary checkbox' }}
-                    />
-                </div>
-
-            </div>
-
-            */

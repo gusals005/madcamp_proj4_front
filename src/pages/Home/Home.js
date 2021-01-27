@@ -86,17 +86,8 @@ const Home = (props) => {
 
     //const location = useLocation();
 
-    let user_c = useSelector(state => {
-        console.log("user_coin2",state);
-        return selectCoin(state);
-    });
-
-    // let matches = [];
-
-    // const match_list = matches.map((number) =>
-    // <li>{number}</li>
-    // );
-
+    
+  
     useEffect(() => {
         console.log(matches);
     }, [matches])
@@ -104,14 +95,6 @@ const Home = (props) => {
     useEffect(() => {
         console.log(user);
     }, [user])
-
-
-    // useEffect(() => {
-    //     console.log(location.user);
-    //     setUser(location.user);
-    // }, [location])
-
-
 
     useEffect(() => {
         axios.get('http://192.249.18.232:8080/match')
@@ -148,16 +131,13 @@ const Home = (props) => {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size="small">Contact Us,{user_c}</Button>
+                    <Button size="small">Contact Us</Button>
                 </CardActions>
             </Card>
 
             {/* Match */}
-            <ul className="list-group list-group-flush" className={matchclasses.root}>
-
-                {/** 
-                    <MatchList matches={matches} user={location.user} />
-                */}
+            <ul className="list-group list-group-flush" className={matchclasses.root}> 
+                <MatchList matches={matches} />
             </ul>
 
             {/* 광고 */}
