@@ -9,7 +9,7 @@ function Signup(){
 
 
     useEffect( async () => {
-        //const response = await axios.get('http://192.249.18.246:8080/');
+        //const response = await axios.get('http://192.249.18.232:8080/');
         //console.log(response);
         
         /*
@@ -24,7 +24,7 @@ function Signup(){
         e.preventDefault();
         console.log('Register was clicked');
         if(state.password === state.confirmPassword){
-            const response = await axios.post('http://192.249.18.246:8080/user/signup',{
+            const response = await axios.post('http://192.249.18.232:8080/user/signup',{
                 user_id: state.userid,
                 password : state.password,
                 //confirmPassword: state.confirmPassword,

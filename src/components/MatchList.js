@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles , withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
 import List from '@material-ui/core/List';
@@ -18,6 +18,15 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import Checkbox from '@material-ui/core/Checkbox';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import { BrandingWatermark } from '@material-ui/icons';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import NativeSelect from '@material-ui/core/NativeSelect';
+import InputBase from '@material-ui/core/InputBase';
+import { selectUser_id, selectCoin } from '../redux/user/selector';
+import { useSelector } from 'react-redux';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -29,53 +38,116 @@ const useStyles = makeStyles((theme) => ({
     dialog:{
         margin:30,
     },
-  }));
-  
-const AlertDialog = ({match}) => {
+}));
+
+const BootstrapInput = withStyles((theme) => ({
+  root: {
+    'label + &': {
+      marginTop: theme.spacing(3),
+    },
+  },
+  input: {
+    borderRadius: 4,
+    position: 'relative',
+    backgroundColor: theme.palette.background.paper,
+    border: '1px solid #ced4da',
+    fontSize: 16,
+    padding: '10px 26px 10px 12px',
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    // Use the system font instead of the default Roboto font.
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+    '&:focus': {
+      borderRadius: 4,
+      borderColor: '#80bdff',
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+    },
+  },
+}))(InputBase);
+
+
+
+const AlertDialog = (props) => {
     const [open, setOpen] = React.useState(false);
     const [checked, setChecked] = React.useState([1]);
+    const [amount,setAmount] = React.useState(0);
+    const [error_message,setError_message] = React.useState('');
     const classes = useStyles();
+
+    useEffect(()=>{
+        //console.log(amount);
+        
+    }, [amount])
 
     const handleClickOpen = () => {
       setOpen(true);
     };
-  
+
+    //팝업창 닫기
     const handleClose = () => {
       setOpen(false);
+      console.log(checked);
+    };
+
+    //betting
+    const handleBetting = () => {
+        if(props.user.coin < amount){
+            setError_message("가진돈보다 많은 금액은 베팅하실 수 없습니다.");
+            setOpen(true);
+        }
+        else{
+            setError_message("");
+            setOpen(false);
+        }
+        console.log(amount);
+        console.log(checked);
     };
 
     const handleToggle = (value) => () => {
         const currentIndex = checked.indexOf(value);
         const newChecked = [...checked];
-    
-        if (currentIndex === -1) {
+        
+        if (currentIndex === -1 && newChecked.length ==0) {
           newChecked.push(value);
-        } else {
+        } else if(currentIndex !== -1 && newChecked.length !== 0){
           newChecked.splice(currentIndex, 1);
         }
-    
+
         setChecked(newChecked);
     };
     
-    const setListItem = (value) => {
+    const setDialog = (value) => {
         let team_name = "";
         let team_odds = 0.0;
-        if(value == 0){
-            team_name = "팀 이름";
-            team_odds = "배당률";
-        }
-        else if(value == 1){
-            team_name = match.home;
-            team_odds = match.win_odds;
-        }
-        else{
-            team_name = match.away;
-            team_odds = match.lose_odds;
+        switch(value){
+            case 0:
+                team_name = "팀 이름";
+                team_odds = "배당률";
+                break;
+            case 1:
+                team_name = props.match.home;
+                team_odds = props.match.win_odds;
+                break;
+            case 2:
+                team_name = props.match.away;
+                team_odds = props.match.lose_odds;
+                break;
         }
 
         return(
             <div className="dialog">
                 {team_name}
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                 {team_odds}
             </div>    
         )
@@ -93,32 +165,48 @@ const AlertDialog = ({match}) => {
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-        <DialogTitle id="alert-dialog-title" className={classes.dialog}>{`Home ${match.home} vs ${match.away} Away`}</DialogTitle>
-            <DialogContent>
-                <List dense className={classes.root}>
-                    {[0, 1,2].map((value) => {
-                        const labelId = `checkbox-list-secondary-label-${value}`;
-                        return (
-                        <ListItem key={value} button>
-                            <ListItemText id={labelId}>
-                                {setListItem(value)}
-                            </ListItemText>
-                            <ListItemText id={labelId} primary={`Line item ${value + 1}`} />
-                            <ListItemSecondaryAction>
-                            <Checkbox
-                                edge="end"
-                                onChange={handleToggle(value)}
-                                checked={checked.indexOf(value) !== -1}
-                                inputProps={{ 'aria-labelledby': labelId }}
-                            />
-                            </ListItemSecondaryAction>
-                        </ListItem>
-                        );
-                    })}
-                </List>
-            </DialogContent>
+        <DialogTitle id="alert-dialog-title" className={classes.dialog}>{`Home ${props.match.home} vs ${props.match.away} Away`}</DialogTitle>
+        <DialogContent>
+            <DialogContentText>
+                내가가진 코인 : {props.user.coin}
+                <br />
+                투자하기:
+                <FormControl className={classes.margin}>
+                    <InputLabel htmlFor="demo-customized-textbox">amount</InputLabel>
+                    <BootstrapInput id="demo-customized-textbox" onChange={e => setAmount(e.target.value)}/>
+                </FormControl>
+            </DialogContentText>
+            <List dense className={classes.root}>
+                {[0, 1,2].map((value) => {
+                    const labelId = `checkbox-list-secondary-label-${value}`;
+                    return (
+                    <ListItem key={value} button>
+                        <ListItemText id={labelId}>
+                            {setDialog(value)}
+                        </ListItemText>
+                        
+                        <ListItemSecondaryAction>
+                        {value > 0 ? <Checkbox
+                            edge="end"
+                            onChange={handleToggle(value)}
+                            checked={checked.indexOf(value) !== -1}
+                            inputProps={{ 'aria-labelledby': labelId }}
+                        /> : ''}
+                        </ListItemSecondaryAction>
+                    </ListItem>
+                    );
+                })}
+            </List>
+            <DialogContentText>
+                {error_message}
+            </DialogContentText>
+            
+        </DialogContent>
         <DialogActions>
             <Button onClick={handleClose} color="primary" autoFocus>
+                Close
+            </Button>
+            <Button onClick={handleBetting} color="primary" autoFocus>
                 Betting
             </Button>
         </DialogActions>
@@ -129,24 +217,28 @@ const AlertDialog = ({match}) => {
 
 
 
-const MatchList = ({matches}) => {
+const MatchList = (props) => {
     
+    let user_id = useSelector(state => {
+        return selectUser_id(state);
+    });
+    let user_coin = useSelector(state => {
+        return selectCoin(state);
+    });
     const loadList = () => {
-        return matches.map((item) => {
+        return props.matches.map((item) => {
             let match_date = item.match_date.split('T')[0];
             console.log(match_date);
             
             return(
-                <div>
-                    <Link to={`/${item._id}`} className="list-group-item list-group-item-action">
-                        <div className="d-flex w-100 justify-content-between">
-                        <h5 className="mb-1">{item.home} vs {item.away}</h5>
-                        <small>{match_date}</small>
-                        </div>
-                        <p className="mb-1">점수  || Home {item.home_score} : {item.away_score} Away</p>
-                        <small>배당률 || Win {item.win_odds} : {item.lose_odds} Lose</small>
-                    </Link>
-                    <AlertDialog match={item} />
+                <div className="list-group-item list-group-item-action">
+                    <div className="d-flex w-100 justify-content-between">
+                    <h5 className="mb-1">{item.home} vs {item.away}</h5>
+                    <small>{match_date}</small>
+                    </div>
+                    <p className="mb-1">점수  || Home {item.home_score} : {item.away_score} Away</p>
+                    <small>배당률 || Win {item.win_odds} : {item.lose_odds} Lose</small>
+                    <AlertDialog match={item} user={{coin:user_coin}} />
                 </div>
             ) 
             
@@ -162,39 +254,3 @@ const MatchList = ({matches}) => {
 }
 
 export default MatchList;
-
-
-/*
-<div className="row">
-                <div>  
-                    <DialogContentText id="alert-dialog-description">
-                        Home 팀 베팅하기
-                    </DialogContentText>
-                    <DialogContentText id="alert-dialog-description">
-                        Away 팀 베팅하기
-                    </DialogContentText>
-                </div>
-                <div>  
-                    <DialogContentText id="alert-dialog-description">
-                        배당률 : {match.home_odds}
-                    </DialogContentText>
-                    <DialogContentText id="alert-dialog-description">
-                        배당률 : {match.away_odds}
-                    </DialogContentText>
-                </div>
-                <div>
-                    <Checkbox
-                        checked={checked}
-                        onChange={handleChange}
-                        inputProps={{ 'aria-label': 'primary checkbox' }}
-                    />
-                    <Checkbox
-                        checked={checked}
-                        onChange={handleChange}
-                        inputProps={{ 'aria-label': 'primary checkbox' }}
-                    />
-                </div>
-
-            </div>
-
-            */

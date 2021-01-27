@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Link} from 'react-router-dom';
+import { Route, Link, useLocation } from 'react-router-dom';
 import styles from './Home.css';
 import Login from '../Login/Login';
 import Signup from '../Login/Signup';
@@ -16,34 +16,36 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import MatchList from '../../components/MatchList';
+import { useSelector } from 'react-redux';
+import { selectCoin } from '../../redux/user/selector';
 
 const useStyles = makeStyles({
     root: {
         minWidth: 275,
-        maxWidth : 300,
+        maxWidth: 300,
         marginLeft: 100,
         marginTop: 50,
     },
     bullet: {
-      display: 'inline-block',
-      margin: '0 2px',
-      transform: 'scale(0.8)',
+        display: 'inline-block',
+        margin: '0 2px',
+        transform: 'scale(0.8)',
     },
     title: {
-      fontSize: 14,
+        fontSize: 14,
     },
     pos: {
-      marginBottom: 12,
+        marginBottom: 12,
     },
 });
 
 const matchStyles = makeStyles({
     root: {
         minWidth: 275,
-        maxWidth : 800,
+        maxWidth: 800,
         marginLeft: 50,
         marginTop: 50,
-        maxHeight : 700,
+        maxHeight: 700,
         overflowY: "auto",
         '&::-webkit-scrollbar': {
             width: '0.4em'
@@ -56,43 +58,46 @@ const matchStyles = makeStyles({
             backgroundColor: 'rgba(0,0,0,.1)',
             outline: '1px solid slategrey'
         }
-        
+
 
     },
     bullet: {
-      display: 'inline-block',
-      margin: '0 2px',
-      transform: 'scale(0.8)',
+        display: 'inline-block',
+        margin: '0 2px',
+        transform: 'scale(0.8)',
     },
     title: {
-      fontSize: 14,
+        fontSize: 14,
     },
     pos: {
-      marginBottom: 12,
+        marginBottom: 12,
     },
 });
 
-const Home = () => {
+const Home = (props) => {
     //const [items, setItems] = useState([]);
-    
-    const [matches, setMatches] = useState([]);
 
+    const [matches, setMatches] = useState([]);
+    const [user, setUser] = useState({});
     const classes = useStyles();
     const bull = <span className={classes.bullet}>•</span>;
     const matchclasses = matchStyles();
 
-    // let matches = [];
 
-    // const match_list = matches.map((number) =>
-        // <li>{number}</li>
-    // );
+    //const location = useLocation();
 
+    
+  
     useEffect(() => {
         console.log(matches);
     }, [matches])
 
-    useEffect(()=>{
-        axios.get('http://192.249.18.246:8080/match')
+    useEffect(() => {
+        console.log(user);
+    }, [user])
+
+    useEffect(() => {
+        axios.get('http://192.249.18.232:8080/match')
             .then((res) => {
                 console.log("---------------");
                 console.log(res);
@@ -100,12 +105,12 @@ const Home = () => {
 
                 setMatches(res.data);
             });
-
+    
         console.log('Get matches.');
     }, []);
-    
 
-    return(
+
+    return (
         <div className="row">
             {/* 광고 */}
             <Card className={classes.root}>
@@ -131,8 +136,8 @@ const Home = () => {
             </Card>
 
             {/* Match */}
-            <ul className="list-group list-group-flush" className={matchclasses.root}>
-                <MatchList matches={matches}/>
+            <ul className="list-group list-group-flush" className={matchclasses.root}> 
+                <MatchList matches={matches} />
             </ul>
 
             {/* 광고 */}
