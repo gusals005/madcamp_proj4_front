@@ -18,7 +18,7 @@ function Login(props){
 
 
     useEffect( async () => {
-        //const response = await axios.get('http://192.249.18.232:8080/');
+        //const response = await axios.get('http://192.249.18.246:8080/');
         //console.log(response);
         
         /*
@@ -32,7 +32,7 @@ function Login(props){
     async function loginCheck(e) {
         e.preventDefault();
         console.log('The link was clicked');
-        const response = await axios.post('http://192.249.18.232:8080/user/login',{
+        const response = await axios.post('http://192.249.18.246:8080/user/login',{
             user_id: state.userid,
             password : state.password
         });

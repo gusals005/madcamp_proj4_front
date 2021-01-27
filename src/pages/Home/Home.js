@@ -92,7 +92,7 @@ const Home = () => {
     }, [matches])
 
     useEffect(()=>{
-        axios.get('http://192.249.18.232:8080/match')
+        axios.get('http://192.249.18.246:8080/match')
             .then((res) => {
                 console.log("---------------");
                 console.log(res);
