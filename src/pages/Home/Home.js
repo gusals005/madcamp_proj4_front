@@ -16,8 +16,8 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import MatchList from '../../components/MatchList';
+import { selectToken } from '../../redux/user/selector';
 import { useSelector } from 'react-redux';
-import { selectCoin } from '../../redux/user/selector';
 
 const useStyles = makeStyles({
     root: {
@@ -82,12 +82,12 @@ const Home = (props) => {
     const classes = useStyles();
     const bull = <span className={classes.bullet}>•</span>;
     const matchclasses = matchStyles();
-
+    const token = useSelector(state => {
+        return selectToken(state);
+    });
 
     //const location = useLocation();
 
-    
-  
     useEffect(() => {
         console.log(matches);
     }, [matches])
@@ -97,6 +97,17 @@ const Home = (props) => {
     }, [user])
 
     useEffect(() => {
+
+        axios.get('http://192.249.18.232:8080/user/check', {
+            headers: {
+              'x-access-token': token
+            }
+        })
+            .then((res) => {
+                console.log(res.data.message);
+                if(res.data.message == "error") props.history.push('/')
+            })
+
         axios.get('http://192.249.18.232:8080/match')
             .then((res) => {
                 console.log("---------------");
@@ -112,6 +123,7 @@ const Home = (props) => {
 
     return (
         <div className="row">
+            <Navbar/>
             {/* 광고 */}
             <Card className={classes.root}>
                 <CardContent>
