@@ -18,12 +18,15 @@ import MatchList from '../../components/MatchList';
 import { selectToken, selectUser_id } from '../../redux/user/selector';
 import { useDispatch, useSelector } from 'react-redux';
 import { SetCoin } from '../../redux/user/action';
-
+import { BorderColor, BorderColorOutlined, BorderStyle } from '@material-ui/icons';
+import imgA from '../../components/material/image_1606922434772.gif';
+import imgB from '../../components/material/image_1608796118742.gif';
 const useStyles = makeStyles({
     root: {
         minWidth: 275,
         maxWidth: 300,
         marginLeft: 100,
+        marginRight: 50,
         marginTop: 50,
         backgroundColor: '#212529',
         color: 'white'
@@ -35,31 +38,38 @@ const useStyles = makeStyles({
     },
     title: {
         fontSize: 14,
+        color: 'white'
     },
     pos: {
         marginBottom: 12,
+        color: 'white'
     },
 });
 
 const matchStyles = makeStyles({
     root: {
+        paddingLeft: 0,
         minWidth: 275,
         maxWidth: 800,
         marginLeft: 50,
+        marginright: 50,
         marginTop: 50,
         maxHeight: 700,
         overflowY: "auto",
         '&::-webkit-scrollbar': {
-            width: '0.4em'
+            width: '0.4em',
+            backgroundColor: '#212529',
         },
         '&::-webkit-scrollbar-track': {
             boxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
-            webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)'
+            webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
         },
         '&::-webkit-scrollbar-thumb': {
-            backgroundColor: 'rgba(0,0,0,.1)',
-            outline: '1px solid slategrey'
-        }
+            backgroundColor: '#ffffff',
+            outline: '0px solid slategrey',
+        },
+        backgroundColor: '#00000000',
+        color: 'white'
 
 
     },
@@ -149,7 +159,7 @@ const Home = (props) => {
             <Navbar/>
             <div className="row">
                 {/* 광고 */}
-                <Card className={classes.root}>
+                <Card className={classes.root} style={{border: 'solid', borderColor: '#4CAF50'}}>
                     <CardContent>
                         <Typography className={classes.title} color="textSecondary" gutterBottom>
                             광고
@@ -165,17 +175,23 @@ const Home = (props) => {
                         <br />
                             {'"We are wating for you."'}
                         </Typography>
+                        
                     </CardContent>
-        
+                    <div className='row align-items-center'>
+                        <img src={ imgA} width='275'/>
+                    </div>
+                    <div className='row align-items-center' style={{marginTop: 5}}>
+                        <img src={ imgB} width='275'/>
+                    </div>  
                 </Card>
 
                 {/* Match */}
-                <ul className="list-group list-group-flush" className={matchclasses.root}> 
-                    <MatchList matches={matches} />
+                <ul className="list-group list-group-flush" className={matchclasses.root}style={{padding: 0, border: 'solid', borderColor: '#4CAF50' }}> 
+                    <MatchList matches={matches}/>
                 </ul>
 
                 {/* 광고 */}
-                <Card className={classes.root}>
+                <Card className={classes.root} style={{border: 'solid', borderColor: '#4CAF50'}}>
                     <CardContent>
                         <Typography className={classes.title} color="textSecondary" gutterBottom>
                             광고
@@ -191,8 +207,15 @@ const Home = (props) => {
                         <br />
                             {'"We are wating for you."'}
                         </Typography>
+
+
                     </CardContent>
-                    
+                    <div className='row align-items-center'>
+                        <img src={ imgA} width='275'/>
+                    </div>
+                    <div className='row align-items-center' style={{marginTop: 5}}>
+                        <img src={ imgB} width='275'/>
+                    </div>                    
                 </Card>
             </div>
         </div>

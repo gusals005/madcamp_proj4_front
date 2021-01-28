@@ -66,8 +66,20 @@ const Totoking = (props) => {
         return state.users.map((item) => {
             return(
                 <div className="list-group-item list-group-item-action">
-                    <p className="mb-1">이름: {item.name}</p>
-                    <small>수익률: {((item.coin-item.principal)/item.principal*100).toFixed(2)}%</small>
+                    <div className="col">
+                        <div>
+                        <small>이름: </small>
+                        </div>
+                        <div>
+                        <p className="mb-1">{item.name}</p>
+                        </div>
+                        <div>
+                        <small>수익률: </small>
+                        </div>
+                        <div>
+                        <p className="mb-1">{((item.coin-item.principal)/item.principal*100).toFixed(2)}%</p>
+                        </div>
+                    </div>
                 </div>
             )
         })

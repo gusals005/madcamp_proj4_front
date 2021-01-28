@@ -29,7 +29,7 @@ import { selectUser_id, selectCoin } from '../redux/user/selector';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { SetBetting, SetCoin } from '../redux/user/action';
-
+import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -77,13 +77,19 @@ const BootstrapInput = withStyles((theme) => ({
   },
 }))(InputBase);
 
+const useStyles1 = makeStyles((theme) => ({
+    dividerColor: {
+        backgroundColor: '#4CAF50',
+    },
+}));
+
 const AlertDialog = (props) => {
     const [open, setOpen] = React.useState(false);
     const [checked, setChecked] = React.useState([1]);
     const [amount,setAmount] = React.useState(0);
     const [error_message,setError_message] = React.useState('');
     const classes = useStyles();
-
+    
     const dispatch = useDispatch();
 
     
@@ -194,11 +200,11 @@ const AlertDialog = (props) => {
         let MT = new Date(matchTime);
 
         return(
-            <div>
+            <div class="row justify-content-end">
                 { nowTime > MT ? 
                     '' : 
-                    <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-                    Betting This Game
+                    <Button variant="outlined" color="inherit" onClick={handleClickOpen} style={{margin: 10, maxWidth: 200}}>
+                        Betting This Game
                     </Button> 
                 }
             </div>
@@ -269,7 +275,7 @@ const AlertDialog = (props) => {
 
 
 const MatchList = (props) => {
-
+    const classes1 = useStyles1();
     let user_id = useSelector(state => {
         return selectUser_id(state);
     });
@@ -282,7 +288,8 @@ const MatchList = (props) => {
             console.log(match_date);
             
             return(
-                <div className="list-group-item list-group-item-action">
+
+                <div className="list-group-item list-group-item-action" style={{backgroundColor: "#212529", color: "#ffffff", border: 'solid', borderColor: "#999999", borderTop: 'none', borderLeft: "none", borderRight: 'none'}}>
                     <div className="d-flex w-100 justify-content-between">
                     <h5 className="mb-1">{item.home} vs {item.away}</h5>
                     <small>{match_date}</small>
@@ -296,7 +303,7 @@ const MatchList = (props) => {
     }
 
     return (
-        <ul>
+        <ul style={{padding: 0, marginRight:10 }}>
             {loadList()}
         </ul>
 

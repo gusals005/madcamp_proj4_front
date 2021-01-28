@@ -29,7 +29,7 @@ function Navbar(){
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container-fluid">
                     <Link to="/home" className="navbar-brand" >
-                        <h2 style={{ color: 'white' }}>ToToNoNo</h2>
+                        <h2 style={{ color: 'white' , marginLeft: '10px'}}> ToToNoNo</h2>
                     </Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
