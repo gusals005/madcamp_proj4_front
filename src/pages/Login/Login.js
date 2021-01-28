@@ -8,7 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import IntroVideo from "../../components/material/introVideo.mp4"
 import { faUser, faLock, faSignature, faCheck } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 /*
 Login page
     - Login 기능 구현 (Id 하고 pwd받아서 DB 내에 사용자인지 확인) (Get api로 확인)
@@ -16,13 +17,18 @@ Login page
     - Login 
 */
 
+
 function Login(props){
     const [state, setState] = useState({loginUserid:"", loginPassword:"", signupUserid:"", signupPassword:"", confirmPassword:"", nickname:"", coin:10000, loginVisible:"visible", signupVisible:"hidden"});
     
     document.title = `ToToNoNo`;
-
+    const showToast = () => {
+        toast.error("회원가입 실패", { autoClose: 1000 })
+    };
+    const showToast1 = () => {
+        toast.error("로그인 실패", { autoClose: 1000 })
+    };
     const dispatch = useDispatch();
-    
     //login 
     async function LoginCheck(e) {
         e.preventDefault();
@@ -34,6 +40,7 @@ function Login(props){
         console.log(response);
 
         if(response.data.message == "fail"){
+            showToast1();
             console.log("로그인 실패");
         }
         else{
@@ -68,11 +75,12 @@ function Login(props){
             if(response.data.message === "success"){
                 setState({...state, register:"success", loginVisible:"visible", signupVisible:"hidden"});
             }
-            else{
+            else{ 
                 setState({...state, register:"fail", loginVisible:"hidden", signupVisible:"visible"});
             }
         }
         else{
+            showToast();
             console.log('is not same between password and confirm password');
         }
     }
@@ -87,6 +95,9 @@ function Login(props){
 
     return (
         <div>
+            <ToastContainer 
+                hideProgressBar={true}
+            />
             <video autoPlay loop muted
             style = {{
                 position: "absolute",
