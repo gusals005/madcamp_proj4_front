@@ -136,6 +136,10 @@ const AlertDialog = (props) => {
             setError_message("가진돈보다 많은 금액은 베팅하실 수 없습니다.");
             setOpen(true);
         }
+        else if(amount <=0){
+            setError_message("수량은 1coin 이상 입력하셔야 합니다.");
+            setOpen(true);
+        }
         else{
             setError_message("");
             setOpen(false);
