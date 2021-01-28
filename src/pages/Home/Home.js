@@ -137,17 +137,11 @@ const Home = (props) => {
                 axios.post('http://192.249.18.232:8080/user/finduser', {
                         user_id:user_id
                     }).then((res)=>{
-                        console.log("1@#12!@3");
                         console.log(res);
-                        console.log("1@#12!@3");
                         let new_coin = res.data.coin;
                         dispatch(SetCoin({coin:new_coin}));
                     })
             });
-        
-        
-
-
         
     
         console.log('Get matches.');
