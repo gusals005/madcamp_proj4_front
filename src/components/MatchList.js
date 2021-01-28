@@ -77,8 +77,6 @@ const BootstrapInput = withStyles((theme) => ({
   },
 }))(InputBase);
 
-
-
 const AlertDialog = (props) => {
     const [open, setOpen] = React.useState(false);
     const [checked, setChecked] = React.useState([1]);

@@ -15,6 +15,7 @@ import axios from 'axios';
 import { selectToken, selectUser_id, selectCoin, selectBetting, selectName, selectPrincipal } from '../../redux/user/selector';
 import { useDispatch, useSelector } from 'react-redux';
 import { Logout, SetCoin, SetPrincipal } from '../../redux/user/action';
+import { useState } from 'react';
 
 const useStyles = makeStyles({
     root: {
@@ -126,6 +127,7 @@ const matchStyles = makeStyles({
 });
 
 const Mypage = (props) => {
+    const [matches, setMatches] = useState([]);
     const classes = useStyles();
     const classes1 = useStyles1();
     const classes2 = useStyles2();
@@ -162,9 +164,51 @@ const Mypage = (props) => {
             .then((res) => {
                 console.log(res.data.message);
                 if(res.data.message == "error") props.history.push('/')
-            })
-    }, []);
+            });
 
+        axios.get('http://192.249.18.232:8080/match')
+        .then((res) => {
+            console.log("---------------");
+            console.log(res);
+            console.log("---------------");
+
+            setMatches(res.data);
+        });
+    
+    }, []);
+    const find_match = (item, pred) => {
+        if (matches.length>0)
+        {
+            var i;
+            for(i=0; i<matches.length; i++) {
+                if (matches[i]._id == item.match_id) {
+                    if (matches[i].can_betting) {
+                        return (
+                            <div>
+                                <p className="mb-1">경기: {(matches[i].home + 'vs' + matches[i].away)}</p>
+                                <p className="mb-1">배팅: {pred}</p>
+                            </div>
+                        )
+                    }
+                    else {
+                        let result = 'Fail'
+                        if ((pred == 'Home' && matches[i].home_score>matches[i].away_score) || (pred == 'Away' && matches[i].home_score<matches[i].away_score)) {
+                            result = 'Success'
+                        }
+                        return (
+                            <div>
+                                <p className="mb-1">경기: {(matches[i].home + 'vs' + matches[i].away)}</p>
+                                <p className="mb-1">배팅: {pred} ({result})</p>
+                            </div>
+                        )
+                    }
+                    break;
+                }
+            }
+            return '';
+        }
+        return '';
+    }
     const loadList = () => {
         return user_betting.map((item) => {
             let match_date = item.betting_date.split('T')[0];
@@ -176,7 +220,7 @@ const Mypage = (props) => {
                     <div className="d-flex w-100 justify-content-start">
                         <small>{match_date}</small>
                     </div>
-                    <p className="mb-1">배팅: {pred}</p>
+                    {find_match(item, pred)}
                     <small>배팅 코인: {item.amount}</small>
                 </div>
             )
@@ -227,6 +271,9 @@ const Mypage = (props) => {
                         </Typography>
                         <Typography className={classes.pos} color="textSecondary">
                             보유 코인: {user_coin}coin
+                        </Typography>
+                        <Typography className={classes.pos} color="textSecondary">
+                            원금: {user_principal}coin
                         </Typography>
                     </CardContent>
                     <CardActions>
