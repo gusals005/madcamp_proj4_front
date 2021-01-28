@@ -1,9 +1,19 @@
 import React from 'react';
 import {Route, Link} from 'react-router-dom';
 import 'react-bootstrap/Navbar';
-import {Nav, NavItem, NavDropdown} from 'react-bootstrap';
+import {Nav, NavItem, NavDropdown, Button} from 'react-bootstrap';
+import { Logout } from '../redux/user/action';
+import { useDispatch } from 'react-redux';
 
-const Navbar = () => {
+function Navbar(){
+    const dispatch = useDispatch();
+
+    async function LogoutRequest(e) {
+        console.log('The link was clicked');
+        dispatch(Logout({token:'init'}));
+        //props.history.push('/');
+    }
+
     return(
         <div>       
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -32,7 +42,7 @@ const Navbar = () => {
                                 </NavDropdown.Item>
                                 
                                 <NavDropdown.Item eventKey="LogOut">
-                                    <Link to='/' className="nav-link">LogOut</Link>
+                                    <Link to='/' className="nav-link" onClick={LogoutRequest}>LogOut</Link>
                                 </NavDropdown.Item>
                             </NavDropdown>
                         </ul>

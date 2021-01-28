@@ -96,6 +96,7 @@ const Home = (props) => {
         console.log(user);
     }, [user])
 
+    console.log(token);
     useEffect(() => {
 
         axios.get('http://192.249.18.232:8080/user/check', {

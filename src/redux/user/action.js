@@ -25,3 +25,8 @@ export const SetPrincipal = (info) => ({
     type: AuthActionTypes.SetPrincipal,
     principal: info.principal
 })
+
+export const Logout = (info) => ({
+    type:AuthActionTypes.Logout,
+    jwt:'info'
+})

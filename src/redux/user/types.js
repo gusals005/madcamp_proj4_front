@@ -4,6 +4,7 @@ const AuthActionTypes = {
     SetCoin:'SetCoin',
     SetBetting:'SetBetting',    
     SetName:'SetName',
-    SetPrincipal:'SetPrincipal'
+    SetPrincipal:'SetPrincipal',
+    Logout: 'Logout'
 };
 export default AuthActionTypes;

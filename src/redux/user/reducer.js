@@ -27,6 +27,8 @@ const authReducer = (state = INITIAL_STATE, action) => {
             return { ...state, name: action.name }
         case 'SetPrincipal':
             return { ...state, principal: action.principal }
+        case 'Logout':
+            return { ...state, jwt:action.jwt }
         default:
             return state;
     }
