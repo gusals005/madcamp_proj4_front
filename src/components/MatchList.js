@@ -122,7 +122,7 @@ const AlertDialog = (props) => {
         };
 
         //get 
-        const response= await axios.post('http://192.249.18.232:8080/match/betting',inputArray);
+        const response= await axios.post('http://192.249.18.232:8080/match/betting',{input:inputArray,isAipick:isAipickChecked});
         console.log(response);
 
         let new_coin = 0;
