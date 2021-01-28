@@ -117,7 +117,8 @@ const matchStyles = makeStyles({
         transform: 'scale(0.8)',
     },
     title: {
-        fontSize: 14,
+        fontSize: 20,
+        color: "#ffffff"
     },
     pos: {
         marginBottom: 12,
@@ -256,19 +257,12 @@ const Mypage = (props) => {
                 </CardActions>
                 </Card> */}
                 <div className={matchclasses.root}>
-                    <Tabs defaultActiveKey="gallery1" className="dormtab">
-                        <Tab eventKey="gallery1" title="현재 배팅 현황">
-                            <div className="tab-item-wrapper">
-                                {loadList()}
-                            </div>
-                        </Tab>
-                        <Tab eventKey="gallery2" title="과거 기록">
-                            <div className="tab-item-wrapper">
-                                과거 배팅 기록들..
-                            </div>
-                        </Tab>
-                    </Tabs>
+                    <Typography className={matchclasses.title} gutterBottom>
+                        배팅 기록
+                    </Typography>
+                    {loadList()}
                 </div>
+                
                 <Card className={classes1.root}>
                     <CardContent>
                         <Typography className={classes1.title} color="textSecondary" gutterBottom>
