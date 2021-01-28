@@ -79,9 +79,9 @@ function Login(props){
                 <input type='text' class="form-control" value={state.password } onChange={e => setState({...state, password:e.target.value})}/>
                 {/*<input type="password" class="form-control" id="exampleInputPassword1"> */}
             </div>
-            <button type="submit" class="btn btn-primary" onClick={LoginCheck}>Submit</button>
+            <button type="submit" class="btn btn-primary" onClick={LoginCheck}>로그인</button>
             <p className="form-group">
-                <Link to='/signup' class="nav-link">Signup</Link>
+                <Link to='/signup' class="nav-link">회원가입</Link>
             </p>
         </form>
         

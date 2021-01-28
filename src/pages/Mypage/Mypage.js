@@ -171,7 +171,7 @@ const Mypage = (props) => {
                         <small>{match_date}</small>
                     </div>
                     <p className="mb-1">배팅: {pred}</p>
-                    <small>배당 코인: {item.amount}</small>
+                    <small>배팅 코인: {item.amount}</small>
                 </div>
             )
         })
