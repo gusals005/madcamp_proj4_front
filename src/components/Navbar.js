@@ -38,7 +38,7 @@ function Navbar(){
                             </li>
                             <NavDropdown title="My" id="nav-dropdown">
                                 <NavDropdown.Item eventKey="My page">
-                                    <Link to='/factcheck' className="nav-link">My Page</Link>
+                                    <Link to='/mypage' className="nav-link">My Page</Link>
                                 </NavDropdown.Item>
                                 
                                 <NavDropdown.Item eventKey="LogOut">
