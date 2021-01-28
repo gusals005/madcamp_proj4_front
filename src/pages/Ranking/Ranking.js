@@ -9,6 +9,10 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Navbar from '../../components/Navbar'
+import { useEffect } from 'react';
+import axios from 'axios';
+import { selectToken } from '../../redux/user/selector';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles({
     root: {
@@ -113,7 +117,7 @@ const useStylesR = makeStyles({
     },
 });
 
-const Ranking = () => {
+const Ranking = (props) => {
     const classes = useStyles();
     const classes1 = useStyles1();
 
@@ -128,6 +132,23 @@ const Ranking = () => {
     const classesR3 = useStylesR();
 
     const bull = <span className={classes.bullet}>•</span>;
+    const token = useSelector(state => {
+        return selectToken(state);
+    });
+
+    useEffect(() => {
+
+        axios.get('http://192.249.18.232:8080/user/check', {
+            headers: {
+              'x-access-token': token
+            }
+        })
+            .then((res) => {
+                console.log(res.data.message);
+                if(res.data.message == "error") props.history.push('/')
+            })
+
+    }, []);
 
     return (
         <div class="col">
