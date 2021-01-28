@@ -54,7 +54,7 @@ const Aipick = (props) => {
 
     return(
         <div>
-            <Navbar/>
+            <Navbar/> 
             <Card className={classes.root}>
             <CardContent>
                 <Typography className={classes.title} color="textSecondary" gutterBottom>

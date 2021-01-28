@@ -228,7 +228,6 @@ const AlertDialog = (props) => {
             <DialogContentText>
                 {error_message}
             </DialogContentText>
-            
         </DialogContent>
         <DialogActions>
             <Button onClick={handleClose} color="primary" autoFocus>
@@ -268,8 +267,7 @@ const MatchList = (props) => {
                     <small>배당률 || Win {item.win_odds} : {item.lose_odds} Lose</small>
                     <AlertDialog match={item} user={{user_id:user_id , coin:user_coin}} />
                 </div>
-            ) 
-            
+            )
         })
     }
 
