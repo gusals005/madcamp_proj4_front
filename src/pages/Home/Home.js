@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Link, useLocation } from 'react-router-dom';
 import styles from './Home.css';
 import Login from '../Login/Login';
-import Signup from '../Login/Signup';
 import 'react-bootstrap/Navbar';
 import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -26,6 +25,8 @@ const useStyles = makeStyles({
         maxWidth: 300,
         marginLeft: 100,
         marginTop: 50,
+        backgroundColor: '#212529',
+        color: 'white'
     },
     bullet: {
         display: 'inline-block',
@@ -131,10 +132,6 @@ const Home = (props) => {
                         dispatch(SetCoin({coin:new_coin}));
                     })
             });
-        
-        
-
-
         
     
         console.log('Get matches.');

@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.background.paper,
     },
     dialog:{
-        margin:30,
+        margin:"auto",
     },
 }));
 
@@ -82,6 +82,8 @@ const AlertDialog = (props) => {
     const [checked, setChecked] = React.useState([1]);
     const [amount,setAmount] = React.useState(0);
     const [error_message,setError_message] = React.useState('');
+    const [aipick, setAipick] = React.useState('');
+    const [isAipickChecked, setIsAipickChecked] = React.useState(0);
     const classes = useStyles();
 
     const dispatch = useDispatch();
@@ -89,9 +91,8 @@ const AlertDialog = (props) => {
     
 
     useEffect(()=>{
-        //console.log(amount);
-        
-    }, [amount])
+        console.log("AFTER",isAipickChecked);
+    }, [isAipickChecked])
 
     const handleClickOpen = () => {
       setOpen(true);
@@ -106,12 +107,17 @@ const AlertDialog = (props) => {
     const postBetting = async () => {
         
         let pred = (checked[0] == 1 ? "WIN" :"LOSE");
+        let new_amount = 0 ;
+        if( isAipickChecked == 0)
+            new_amount = amount;
+        else
+            new_amount = amount*1+1000;
 
         //make input array
         let inputArray = {
             user_id:props.user.user_id,
             match_id:props.match._id,
-            amount:amount,
+            amount:new_amount,
             prediction:pred
         };
 
@@ -119,7 +125,13 @@ const AlertDialog = (props) => {
         const response= await axios.post('http://192.249.18.232:8080/match/betting',inputArray);
         console.log(response);
 
-        let new_coin = props.user.coin-amount;
+        let new_coin = 0;
+        console.log("hih",isAipickChecked);
+        if( isAipickChecked == 0)
+            new_coin = props.user.coin-amount;
+        else
+            new_coin = props.user.coin-amount-1000;
+
         let new_betting_list = response.data.betting;
         console.log(new_betting_list);
         console.log("찐",props.user.coin);
@@ -159,6 +171,26 @@ const AlertDialog = (props) => {
 
         setChecked(newChecked);
     };
+
+    const handleAipick = () => {
+        const currentChecked = aipick;
+        if(props.user.coin < 1000){
+            setAipick("보유금액이 작아 aipick을 받을 수 없습니다.");
+            return;
+        }
+
+        if (currentChecked == '') {
+          //match 에 aipick을 가져와.
+            let pick = props.match.aipick;
+            setAipick(pick);
+            console.log("pre" ,isAipickChecked);
+            setIsAipickChecked(1);
+            
+        } else{
+            let str ='';
+            setAipick(str);  
+        }
+    };
     
     const setDialog = (value) => {
         let team_name = "";
@@ -189,17 +221,14 @@ const AlertDialog = (props) => {
 
     const setBettingBtn = () => {
         
-        const nowTime = new Date();
-        let matchTime = props.match.match_date;
-        let MT = new Date(matchTime);
-
+        let can_bet = props.match.can_betting;
+        
         return(
             <div>
-                { nowTime > MT ? 
-                    '' : 
+                { can_bet ? 
                     <Button variant="outlined" color="primary" onClick={handleClickOpen}>
                     Betting This Game
-                    </Button> 
+                    </Button> : ''  
                 }
             </div>
             
@@ -219,15 +248,22 @@ const AlertDialog = (props) => {
         >
         <DialogTitle id="alert-dialog-title" className={classes.dialog}>{`Home ${props.match.home} vs ${props.match.away} Away`}</DialogTitle>
         <DialogContent>
-            <DialogContentText>
-                내가가진 코인 : {props.user.coin}
-                <br />
-                투자하기:
-                <FormControl className={classes.margin}>
-                    <InputLabel htmlFor="demo-customized-textbox">amount</InputLabel>
-                    <BootstrapInput id="demo-customized-textbox" onChange={e => setAmount(e.target.value)}/>
-                </FormControl>
-            </DialogContentText>
+            <div className="row">
+                <DialogContentText>
+                    내가가진 코인 : {props.user.coin}
+                    <br />
+                    투자하기:
+                    <FormControl className={classes.margin}>
+                        <InputLabel htmlFor="demo-customized-textbox">amount</InputLabel>
+                        <BootstrapInput id="demo-customized-textbox" onChange={e => setAmount(e.target.value)}/>
+                    </FormControl>
+                </DialogContentText>
+                <DialogContentText>
+                    AI로부터 Pick받기
+                    <Checkbox edge="end" onChange={handleAipick} />
+                    &emsp;{aipick}
+                </DialogContentText>
+            </div>
             <List dense className={classes.root}>
                 {[0, 1,2].map((value) => {
                     const labelId = `checkbox-list-secondary-label-${value}`;
