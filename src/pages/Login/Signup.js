@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { Component, useEffect, useState } from 'react';
 import {Link} from 'react-router-dom'
+import IntroVideo from "../../components/material/introVideo.mp4"
 
 function Signup(){
     const [state, setState] = useState({userid:"",password:"",confirmPassword:"",nickname:"", coin:10000, register:"loading"});
@@ -48,59 +49,64 @@ function Signup(){
     }
 
     return (
-        <form>
-                <h3>Sign up</h3>
+        <div>
+            <video autoPlay loop muted
+            style = {{
+                position: "absolute",
+                width: "100%",
+                left: "50%",
+                top: "50%",
+                height: "100%",
+                objectFit: "cover",
+                transform: "translate(-50%, -50%)",
+                zIndex: "-1"
+            }}
+            >
+                <source src={IntroVideo} type="video/mp4"/>
+            </video>
+            <h3>Sign up</h3>
 
-                <div className="form-group">
-                    <label>Id</label>
-                    <input type='text' value={state.userid } onChange={e => setState({...state, userid:e.target.value})}/>
+            <div className="form-group">
+                <label>Id</label>
+                <input type='text' value={state.userid } onChange={e => setState({...state, userid:e.target.value})}/>
+            </div>
+
+            <div className="form-group">
+                <label>Password</label>
+                <input type='text' value={state.password } onChange={e => setState({...state, password:e.target.value})}/>
+            </div>
+
+            <div className="form-group">
+                <label>Confirm new password</label>
+                <input type='text' value={state.confirmPassword } onChange={e => setState({...state, confirmPassword:e.target.value})}/>
+            </div>
+
+            <div className="form-group">
+                <label>Nickname</label>
+                <input type='text' value={state.nickname } onChange={e => setState({...state, nickname:e.target.value})}/>
+            </div>
+
+            {/*
+                check box(Remember me)
+            <div className="form-group">
+                <div className="custom-control custom-checkbox">
+                    <input type="checkbox" className="custom-control-input" id="customCheck1" />
+                    <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
                 </div>
+            </div>
+            */}
 
-                <div className="form-group">
-                    <label>Password</label>
-                    <input type='text' value={state.password } onChange={e => setState({...state, password:e.target.value})}/>
-                </div>
+            <button type="submit" className="btn btn-primary btn-block" onClick={register}>
+                회원가입
+                </button>
 
-                <div className="form-group">
-                    <label>Confirm new password</label>
-                    <input type='text' value={state.confirmPassword } onChange={e => setState({...state, confirmPassword:e.target.value})}/>
-                </div>
-
-                <div className="form-group">
-                    <label>Nickname</label>
-                    <input type='text' value={state.nickname } onChange={e => setState({...state, nickname:e.target.value})}/>
-                </div>
-
-                {/*
-                    check box(Remember me)
-                <div className="form-group">
-                    <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="customCheck1" />
-                        <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
-                    </div>
-                </div>
-                */}
-
-                <button type="submit" className="btn btn-primary btn-block" onClick={register}>
-                    회원가입
-                    </button>
-
-                <p className="forgot-password text-right">
-                    <Link to='/'>Login 창으로 돌아가기</Link>
-                </p>
-                <p className="forgot-password text-right">
-                    회원가입 성공?? <b>{state.register}</b>
-                </p>
-            </form>
-      
-      /*
-      <div>
-        <p> Login</p>
-        <input type='text' value={state.userid} onChange={e => setState({...state, userid:e.target.value})}/>
-        <input type='text' value={state.password } onChange={e => setState({...state, password:e.target.value})}/>
-        <br></br>로그인을 하려면 <b>{"회원가입"}</b>을 해야 합니다.
-      </div>
-      */      
+            <p className="forgot-password text-right">
+                <Link to='/'>Login 창으로 돌아가기</Link>
+            </p>
+            <p className="forgot-password text-right">
+                회원가입 성공?? <b>{state.register}</b>
+            </p>
+        </div>
     );
 }
 
