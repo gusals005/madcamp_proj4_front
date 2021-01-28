@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles , withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -26,7 +26,9 @@ import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import InputBase from '@material-ui/core/InputBase';
 import { selectUser_id, selectCoin } from '../redux/user/selector';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
+import { SetCoin } from '../redux/user/action';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -84,6 +86,8 @@ const AlertDialog = (props) => {
     const [error_message,setError_message] = React.useState('');
     const classes = useStyles();
 
+    const dispatch = useDispatch();
+
     useEffect(()=>{
         //console.log(amount);
         
@@ -99,6 +103,29 @@ const AlertDialog = (props) => {
       console.log(checked);
     };
 
+    const postBetting = async () => {
+        
+        let pred = (checked[0] == 1 ? "WIN" :"LOSE");
+
+        //make input array
+        let inputArray = {
+            user_id:props.user.user_id,
+            match_id:props.match._id,
+            amount:amount,
+            prediction:pred
+        };
+
+        //get 
+        const response= await axios.post('http://192.249.18.232:8080/match/betting',inputArray);
+        console.log(response);
+
+        let new_coin = props.user.coin-amount;
+
+        console.log("찐",props.user.coin);
+        dispatch(SetCoin({coin:new_coin}));
+        
+    } 
+
     //betting
     const handleBetting = () => {
         if(props.user.coin < amount){
@@ -108,6 +135,7 @@ const AlertDialog = (props) => {
         else{
             setError_message("");
             setOpen(false);
+            postBetting();
         }
         console.log(amount);
         console.log(checked);
@@ -218,7 +246,7 @@ const AlertDialog = (props) => {
 
 
 const MatchList = (props) => {
-    
+
     let user_id = useSelector(state => {
         return selectUser_id(state);
     });
@@ -238,7 +266,7 @@ const MatchList = (props) => {
                     </div>
                     <p className="mb-1">점수  || Home {item.home_score} : {item.away_score} Away</p>
                     <small>배당률 || Win {item.win_odds} : {item.lose_odds} Lose</small>
-                    <AlertDialog match={item} user={{coin:user_coin}} />
+                    <AlertDialog match={item} user={{user_id:user_id , coin:user_coin}} />
                 </div>
             ) 
             
