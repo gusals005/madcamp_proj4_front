@@ -134,6 +134,10 @@ const AlertDialog = (props) => {
             setError_message("가진돈보다 많은 금액은 베팅하실 수 없습니다.");
             setOpen(true);
         }
+        else if(amount <=0){
+            setError_message("수량은 1coin 이상 입력하셔야 합니다.");
+            setOpen(true);
+        }
         else{
             setError_message("");
             setOpen(false);
@@ -188,13 +192,6 @@ const AlertDialog = (props) => {
         const nowTime = new Date();
         let matchTime = props.match.match_date;
         let MT = new Date(matchTime);
-        console.log("nowTime", nowTime);
-        console.log("nowmatchTime", MT);
-        
-        if(nowTime > MT)
-            console.log("현재시간이 좀더 앞섬");
-        else
-            console.log("경기시각이 앞섬");
 
         return(
             <div>

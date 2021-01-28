@@ -58,7 +58,10 @@ function Navbar(){
                     </div>
                 </div>
             </nav> 
-            <Divider classes={{root: classes.dividerColor}}/>  
+            <Divider classes={{root: classes.dividerColor}}/> 
+            <Divider classes={{root: classes.dividerColor}}/>
+            <Divider classes={{root: classes.dividerColor}}/>
+            <Divider classes={{root: classes.dividerColor}}/> 
         </div>
     )
 }
