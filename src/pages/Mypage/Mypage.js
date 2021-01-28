@@ -16,6 +16,8 @@ import { selectToken, selectUser_id, selectCoin, selectBetting, selectName, sele
 import { useDispatch, useSelector } from 'react-redux';
 import { Logout, SetCoin, SetPrincipal } from '../../redux/user/action';
 import { useState } from 'react';
+import imgA from '../../components/material/image_1606922434772.gif';
+import imgB from '../../components/material/image_1608796118742.gif';
 
 const useStyles = makeStyles({
     root: {
@@ -333,6 +335,12 @@ const Mypage = (props) => {
                             털렸쥬?
                         </Typography>
                     </CardContent>
+                    <div className='row align-items-center'>
+                        <img src={ imgA} width='275'/>
+                    </div>
+                    <div className='row align-items-center' style={{marginTop: 5}}>
+                        <img src={ imgB} width='275'/>
+                    </div>
                 </Card>
             </div>
         </div>

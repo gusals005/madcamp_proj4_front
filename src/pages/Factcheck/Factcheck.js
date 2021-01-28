@@ -80,7 +80,7 @@ const Factcheck = (props) => {
                                     <div class="card">
                                         <div class="card-body">
                                             <h5 class="card-title">태평 소국밥</h5>
-                                            <p class="card-text">태평 소국밥 약 {((user_principal-user_coin)/6.5).toFixed(0)} 그릇 </p>
+                                            <p class="card-text">약 {((user_principal-user_coin)/6.5).toFixed(0)} 그릇 </p>
                                         </div>
                                     </div>
                                 </div>
@@ -90,7 +90,7 @@ const Factcheck = (props) => {
                                     <div class="card">
                                         <div class="card-body">
                                             <h5 class="card-title">붕어빵</h5>
-                                            <p class="card-text">붕어빵 약 {((user_principal-user_coin)/0.33).toFixed(0)} 개</p>
+                                            <p class="card-text">약 {((user_principal-user_coin)/0.33).toFixed(0)} 개</p>
                                         </div>
                                     </div>
                                 </div>
@@ -99,7 +99,7 @@ const Factcheck = (props) => {
                                     <div class="card">
                                         <div class="card-body">
                                             <h5 class="card-title">별 피시방</h5>
-                                            <p class="card-text">별 피시방 약 {((user_principal-user_coin)/1).toFixed(0)} 시간</p>
+                                            <p class="card-text">약 {((user_principal-user_coin)/1).toFixed(0)} 시간</p>
                                         </div>
                                     </div>
                                 </div>
@@ -110,8 +110,8 @@ const Factcheck = (props) => {
                                 <div className = {class_margin.root}>
                                     <div class="card">
                                         <div class="card-body">
-                                            <h5 class="card-title">휴지</h5>
-                                            <p class="card-text">두루마리 휴지 약 {((user_principal-user_coin)/0.009).toFixed(0)}m</p>
+                                            <h5 class="card-title">두루마리 휴지</h5>
+                                            <p class="card-text">약 {((user_principal-user_coin)/0.009).toFixed(0)}m</p>
                                         </div>
                                     </div>
                                 </div>
@@ -121,7 +121,7 @@ const Factcheck = (props) => {
                                     <div class="card">
                                         <div class="card-body">
                                             <h5 class="card-title">수돗물</h5>
-                                            <p class="card-text">수돗물 약 {((user_principal-user_coin)/0.0006).toFixed(0)}L</p>
+                                            <p class="card-text">약 {((user_principal-user_coin)/0.0006).toFixed(0)}L</p>
                                         </div>
                                     </div>
                                 </div>
