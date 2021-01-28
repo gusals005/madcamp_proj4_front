@@ -8,6 +8,7 @@ import Totoking from './pages/Totoking/Totoking';
 import Aipick from './pages/Aipick/Aipick';
 import Ranking from './pages/Ranking/Ranking';
 import Factcheck from './pages/Factcheck/Factcheck';
+import Mypage from './pages/Mypage/Mypage';
 
 function App() {
   const name = 'react';
@@ -20,6 +21,7 @@ function App() {
       <Route exact path = '/home' component={Home}/>
       <Route exact path='/' component={Login}/>
       <Route exact path='/signup' component={Signup}/>
+      <Route exact path='/mypage' component={Mypage}/>
     </Router>
   );
 }
