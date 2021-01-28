@@ -12,8 +12,9 @@ import Navbar from '../../components/Navbar'
 import {Tabs,Tab,Col,Row,Nav,NavItem} from 'react-bootstrap';
 import { useEffect } from 'react';
 import axios from 'axios';
-import { selectToken, selectUser_id, selectCoin, selectBetting, selectName } from '../../redux/user/selector';
-import { useSelector } from 'react-redux';
+import { selectToken, selectUser_id, selectCoin, selectBetting, selectName, selectPrincipal } from '../../redux/user/selector';
+import { useDispatch, useSelector } from 'react-redux';
+import { Logout, SetCoin, SetPrincipal } from '../../redux/user/action';
 
 const useStyles = makeStyles({
     root: {
@@ -129,6 +130,8 @@ const Mypage = (props) => {
     const classes2 = useStyles2();
     const matchclasses = matchStyles();
     const bull = <span className={classes.bullet}>•</span>;
+
+    const dispatch = useDispatch();
     const token = useSelector(state => {
         return selectToken(state);
     });
@@ -142,10 +145,12 @@ const Mypage = (props) => {
         return selectCoin(state);
     });
     const user_betting = useSelector(state => {
-        
         return selectBetting(state);
     });
     console.log(user_betting);
+    const user_principal = useSelector(state => {
+        return selectPrincipal(state);
+    });
     useEffect(() => {
 
         axios.get('http://192.249.18.232:8080/user/check', {
@@ -177,6 +182,36 @@ const Mypage = (props) => {
         })
     }
 
+    const addCoin = async () =>{
+        //post 보내기 (addcoin 달라고)
+        const response = await axios.post('http://192.249.18.232:8080/user/addcoin',{
+            user_id:user_id
+        })
+        console.log("adcoin 후 response :",response);
+
+        let coin_add = user_coin + 10000;
+        let principal_add = user_principal +10000;
+
+        //성공 했다면, coin 과 principal redux 수정
+        if(response.data.message == "success"){
+            dispatch(SetCoin({coin:coin_add}));
+            dispatch(SetPrincipal({principal:principal_add}));
+        }
+
+    }
+
+    const deleteUser = async () =>{
+        //post 보내기 (addcoin 달라고)
+        const response = await axios.post('http://192.249.18.232:8080/user/deleteUser',{
+            user_id:user_id
+        })
+        console.log("delete 후 response :",response);
+        
+        //delete 하고 나면, 
+        dispatch(Logout({token:'init'}));
+        props.history.push('/');
+    }
+
     return(
         <div>
             <Navbar/>
@@ -194,7 +229,8 @@ const Mypage = (props) => {
                         </Typography>
                     </CardContent>
                     <CardActions>
-                        <Button size="small">코인 1만 개 충전</Button>
+                        <Button size="small" onClick={addCoin}>코인 1만 개 충전</Button>
+                        <Button size="small" onClick={deleteUser}>회원탈퇴</Button>
                     </CardActions>
                 </Card>
                 

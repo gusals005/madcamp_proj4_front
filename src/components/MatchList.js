@@ -88,6 +88,8 @@ const AlertDialog = (props) => {
 
     const dispatch = useDispatch();
 
+    
+
     useEffect(()=>{
         //console.log(amount);
         
@@ -181,11 +183,36 @@ const AlertDialog = (props) => {
         )
     };
 
+    const setBettingBtn = () => {
+
+        const nowTime = new Date();
+        let matchTime = props.match.match_date;
+        let MT = new Date(matchTime);
+        console.log("nowTime", nowTime);
+        console.log("nowmatchTime", MT);
+        
+        if(nowTime > MT)
+            console.log("현재시간이 좀더 앞섬");
+        else
+            console.log("경기시각이 앞섬");
+
+        return(
+            <div>
+                { nowTime > MT ? 
+                    '' : 
+                    <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+                    Betting This Game
+                    </Button> 
+                }
+            </div>
+            
+        )
+    };
+
+
     return (
       <div>
-        <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-          Betting This Game
-        </Button>
+        {setBettingBtn()}
         <Dialog
           open={open}
           onClose={handleClose}

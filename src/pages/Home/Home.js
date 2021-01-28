@@ -100,10 +100,10 @@ const Home = (props) => {
     useEffect(() => {
 
         axios.get('http://192.249.18.232:8080/user/check', {
-            headers: {
-              'x-access-token': token
-            }
-        })
+                headers: {
+                'x-access-token': token
+                }
+            })
             .then((res) => {
                 console.log(res.data.message);
                 if(res.data.message == "error") props.history.push('/')
@@ -144,9 +144,7 @@ const Home = (props) => {
                             {'"We are wating for you."'}
                         </Typography>
                     </CardContent>
-                    <CardActions>
-                        <Button size="small">Contact Us</Button>
-                    </CardActions>
+        
                 </Card>
 
                 {/* Match */}
@@ -172,9 +170,7 @@ const Home = (props) => {
                             {'"We are wating for you."'}
                         </Typography>
                     </CardContent>
-                    <CardActions>
-                        <Button size="small">Contact Us</Button>
-                    </CardActions>
+                    
                 </Card>
             </div>
         </div>
