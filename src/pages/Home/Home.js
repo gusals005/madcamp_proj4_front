@@ -16,8 +16,9 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import MatchList from '../../components/MatchList';
-import { selectToken } from '../../redux/user/selector';
-import { useSelector } from 'react-redux';
+import { selectToken, selectUser_id } from '../../redux/user/selector';
+import { useDispatch, useSelector } from 'react-redux';
+import { SetCoin } from '../../redux/user/action';
 
 const useStyles = makeStyles({
     root: {
@@ -86,6 +87,11 @@ const Home = (props) => {
         return selectToken(state);
     });
 
+    const user_id = useSelector(state => {
+        return selectUser_id(state);
+    });
+
+    const dispatch = useDispatch();
     //const location = useLocation();
 
     useEffect(() => {
@@ -114,9 +120,24 @@ const Home = (props) => {
                 console.log("---------------");
                 console.log(res);
                 console.log("---------------");
-
+                
                 setMatches(res.data);
+
+                axios.post('http://192.249.18.232:8080/user/finduser', {
+                        user_id:user_id
+                    }).then((res)=>{
+                        console.log("1@#12!@3");
+                        console.log(res);
+                        console.log("1@#12!@3");
+                        let new_coin = res.data.coin;
+                        dispatch(SetCoin({coin:new_coin}));
+                    })
             });
+        
+        
+
+
+        
     
         console.log('Get matches.');
     }, []);

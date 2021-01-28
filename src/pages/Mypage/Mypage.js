@@ -173,6 +173,14 @@ const Mypage = (props) => {
             console.log("---------------");
 
             setMatches(res.data);
+
+            axios.post('http://192.249.18.232:8080/user/finduser', {
+                        user_id:user_id
+                    }).then((res)=>{
+                        console.log(res);
+                        let new_coin = res.data.coin;
+                        dispatch(SetCoin({coin:new_coin}));
+                    })
         });
     
     }, []);
