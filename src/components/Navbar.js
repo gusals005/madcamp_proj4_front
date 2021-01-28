@@ -28,9 +28,6 @@ function Navbar(){
                                 <Link to='/totoking' className="nav-link">금주의 토토왕</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to='/aipick' className="nav-link">동현이 픽 받기</Link>
-                            </li>
-                            <li className="nav-item">
                                 <Link to='/rank' className="nav-link">기록/순위</Link>
                             </li>
                             <li className="nav-item">

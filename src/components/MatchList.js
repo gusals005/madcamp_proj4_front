@@ -77,8 +77,6 @@ const BootstrapInput = withStyles((theme) => ({
   },
 }))(InputBase);
 
-
-
 const AlertDialog = (props) => {
     const [open, setOpen] = React.useState(false);
     const [checked, setChecked] = React.useState([1]);
@@ -194,13 +192,6 @@ const AlertDialog = (props) => {
         const nowTime = new Date();
         let matchTime = props.match.match_date;
         let MT = new Date(matchTime);
-        console.log("nowTime", nowTime);
-        console.log("nowmatchTime", MT);
-        
-        if(nowTime > MT)
-            console.log("현재시간이 좀더 앞섬");
-        else
-            console.log("경기시각이 앞섬");
 
         return(
             <div>
