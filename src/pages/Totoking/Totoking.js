@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState } from 'react';
 import {Route, Link} from 'react-router-dom';
 import './Totoking.css';
 import 'react-bootstrap/Navbar';
@@ -17,12 +17,9 @@ import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles({
     root: {
-        minWidth: 275
+        margin: 50,
     },
     bullet: {
-      display: 'inline-block',
-      margin: '0 2px',
-      transform: 'scale(0.8)',
     },
     title: {
       fontSize: 14,
@@ -33,11 +30,7 @@ const useStyles = makeStyles({
   });
 
 const Totoking = (props) => {
-    const classes = useStyles();
-    const bull = <span className={classes.bullet}>•</span>;
-    const token = useSelector(state => {
-        return selectToken(state);
-    });
+    const [state, setState] = useState({users: []});
 
     useEffect(() => {
 
@@ -46,12 +39,39 @@ const Totoking = (props) => {
               'x-access-token': token
             }
         })
-            .then((res) => {
-                console.log(res.data.message);
-                if(res.data.message == "error") props.history.push('/')
-            })
+        .then((res) => {
+            if(res.data.message == "error") props.history.push('/')
+        })
 
+        axios.get('http://192.249.18.232:8080/user')
+        .then((res) => {
+            const users = res.data
+            setState({users: users})
+            console.log(users[0])
+        });
     }, []);
+    let user_name;
+    if (state.users.length > 1) {
+        state.users.sort(function(a,b) {
+            return (a.coin-a.principal)/a.principal - (b.coin-b.principal)/b.principal;
+        });
+    }
+    const classes = useStyles();
+    const bull = <span className={classes.bullet}>•</span>;
+    const token = useSelector(state => {
+        return selectToken(state);
+    });
+
+    const loadList = () => {
+        return state.users.map((item) => {
+            return(
+                <div className="list-group-item list-group-item-action">
+                    <p className="mb-1">이름: {item.name}</p>
+                    <small>수익률: {((item.coin-item.principal)/item.principal*100).toFixed(2)}%</small>
+                </div>
+            )
+        })
+    }
 
     return(
         <div>
@@ -62,20 +82,9 @@ const Totoking = (props) => {
                     금주의 토토킹
                 </Typography>
                 <Typography variant="h5" component="h2">
-                    1. blabla
-                </Typography>
-                <Typography className={classes.pos} color="textSecondary">
-                    2. blabla
-                </Typography>
-                <Typography variant="body2" component="p">
-                    3. blabla
-                <br />
-                    {'"We are wating for you."'}
+                    {loadList()}
                 </Typography>
             </CardContent>
-            <CardActions>
-                <Button size="small">금액은?</Button>
-            </CardActions>
             </Card>
 
         </div>

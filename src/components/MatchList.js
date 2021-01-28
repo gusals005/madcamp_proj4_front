@@ -28,7 +28,7 @@ import InputBase from '@material-ui/core/InputBase';
 import { selectUser_id, selectCoin } from '../redux/user/selector';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { SetCoin } from '../redux/user/action';
+import { SetBetting, SetCoin } from '../redux/user/action';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -77,8 +77,6 @@ const BootstrapInput = withStyles((theme) => ({
   },
 }))(InputBase);
 
-
-
 const AlertDialog = (props) => {
     const [open, setOpen] = React.useState(false);
     const [checked, setChecked] = React.useState([1]);
@@ -87,6 +85,8 @@ const AlertDialog = (props) => {
     const classes = useStyles();
 
     const dispatch = useDispatch();
+
+    
 
     useEffect(()=>{
         //console.log(amount);
@@ -120,9 +120,11 @@ const AlertDialog = (props) => {
         console.log(response);
 
         let new_coin = props.user.coin-amount;
-
+        let new_betting_list = response.data.betting;
+        console.log(new_betting_list);
         console.log("찐",props.user.coin);
         dispatch(SetCoin({coin:new_coin}));
+        dispatch(SetBetting({betting:new_betting_list}));
         
     } 
 
@@ -181,11 +183,36 @@ const AlertDialog = (props) => {
         )
     };
 
+    const setBettingBtn = () => {
+
+        const nowTime = new Date();
+        let matchTime = props.match.match_date;
+        let MT = new Date(matchTime);
+        console.log("nowTime", nowTime);
+        console.log("nowmatchTime", MT);
+        
+        if(nowTime > MT)
+            console.log("현재시간이 좀더 앞섬");
+        else
+            console.log("경기시각이 앞섬");
+
+        return(
+            <div>
+                { nowTime > MT ? 
+                    '' : 
+                    <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+                    Betting This Game
+                    </Button> 
+                }
+            </div>
+            
+        )
+    };
+
+
     return (
       <div>
-        <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-          Betting This Game
-        </Button>
+        {setBettingBtn()}
         <Dialog
           open={open}
           onClose={handleClose}

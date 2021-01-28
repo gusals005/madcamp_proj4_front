@@ -12,8 +12,10 @@ import Navbar from '../../components/Navbar'
 import {Tabs,Tab,Col,Row,Nav,NavItem} from 'react-bootstrap';
 import { useEffect } from 'react';
 import axios from 'axios';
-import { selectToken, selectUser_id, selectCoin, selectBetting, selectName } from '../../redux/user/selector';
-import { useSelector } from 'react-redux';
+import { selectToken, selectUser_id, selectCoin, selectBetting, selectName, selectPrincipal } from '../../redux/user/selector';
+import { useDispatch, useSelector } from 'react-redux';
+import { Logout, SetCoin, SetPrincipal } from '../../redux/user/action';
+import { useState } from 'react';
 
 const useStyles = makeStyles({
     root: {
@@ -116,7 +118,8 @@ const matchStyles = makeStyles({
         transform: 'scale(0.8)',
     },
     title: {
-        fontSize: 14,
+        fontSize: 20,
+        color: "#ffffff"
     },
     pos: {
         marginBottom: 12,
@@ -124,11 +127,14 @@ const matchStyles = makeStyles({
 });
 
 const Mypage = (props) => {
+    const [matches, setMatches] = useState([]);
     const classes = useStyles();
     const classes1 = useStyles1();
     const classes2 = useStyles2();
     const matchclasses = matchStyles();
     const bull = <span className={classes.bullet}>•</span>;
+
+    const dispatch = useDispatch();
     const token = useSelector(state => {
         return selectToken(state);
     });
@@ -142,10 +148,12 @@ const Mypage = (props) => {
         return selectCoin(state);
     });
     const user_betting = useSelector(state => {
-        
         return selectBetting(state);
     });
     console.log(user_betting);
+    const user_principal = useSelector(state => {
+        return selectPrincipal(state);
+    });
     useEffect(() => {
 
         axios.get('http://192.249.18.232:8080/user/check', {
@@ -156,9 +164,51 @@ const Mypage = (props) => {
             .then((res) => {
                 console.log(res.data.message);
                 if(res.data.message == "error") props.history.push('/')
-            })
-    }, []);
+            });
 
+        axios.get('http://192.249.18.232:8080/match')
+        .then((res) => {
+            console.log("---------------");
+            console.log(res);
+            console.log("---------------");
+
+            setMatches(res.data);
+        });
+    
+    }, []);
+    const find_match = (item, pred) => {
+        if (matches.length>0)
+        {
+            var i;
+            for(i=0; i<matches.length; i++) {
+                if (matches[i]._id == item.match_id) {
+                    if (matches[i].can_betting) {
+                        return (
+                            <div>
+                                <p className="mb-1">경기: {(matches[i].home + 'vs' + matches[i].away)}</p>
+                                <p className="mb-1">배팅: {pred}</p>
+                            </div>
+                        )
+                    }
+                    else {
+                        let result = 'Fail'
+                        if ((pred == 'Home' && matches[i].home_score>matches[i].away_score) || (pred == 'Away' && matches[i].home_score<matches[i].away_score)) {
+                            result = 'Success'
+                        }
+                        return (
+                            <div>
+                                <p className="mb-1">경기: {(matches[i].home + 'vs' + matches[i].away)}</p>
+                                <p className="mb-1">배팅: {pred} ({result})</p>
+                            </div>
+                        )
+                    }
+                    break;
+                }
+            }
+            return '';
+        }
+        return '';
+    }
     const loadList = () => {
         return user_betting.map((item) => {
             let match_date = item.betting_date.split('T')[0];
@@ -170,11 +220,41 @@ const Mypage = (props) => {
                     <div className="d-flex w-100 justify-content-start">
                         <small>{match_date}</small>
                     </div>
-                    <p className="mb-1">배팅: {pred}</p>
-                    <small>배당 코인: {item.amount}</small>
+                    {find_match(item, pred)}
+                    <small>배팅 코인: {item.amount}</small>
                 </div>
             )
         })
+    }
+
+    const addCoin = async () =>{
+        //post 보내기 (addcoin 달라고)
+        const response = await axios.post('http://192.249.18.232:8080/user/addcoin',{
+            user_id:user_id
+        })
+        console.log("adcoin 후 response :",response);
+
+        let coin_add = user_coin + 10000;
+        let principal_add = user_principal +10000;
+
+        //성공 했다면, coin 과 principal redux 수정
+        if(response.data.message == "success"){
+            dispatch(SetCoin({coin:coin_add}));
+            dispatch(SetPrincipal({principal:principal_add}));
+        }
+
+    }
+
+    const deleteUser = async () =>{
+        //post 보내기 (addcoin 달라고)
+        const response = await axios.post('http://192.249.18.232:8080/user/deleteUser',{
+            user_id:user_id
+        })
+        console.log("delete 후 response :",response);
+        
+        //delete 하고 나면, 
+        dispatch(Logout({token:'init'}));
+        props.history.push('/');
     }
 
     return(
@@ -192,9 +272,13 @@ const Mypage = (props) => {
                         <Typography className={classes.pos} color="textSecondary">
                             보유 코인: {user_coin}coin
                         </Typography>
+                        <Typography className={classes.pos} color="textSecondary">
+                            원금: {user_principal}coin
+                        </Typography>
                     </CardContent>
                     <CardActions>
-                        <Button size="small">코인 1만 개 충전</Button>
+                        <Button size="small" onClick={addCoin}>코인 1만 개 충전</Button>
+                        <Button size="small" onClick={deleteUser}>회원탈퇴</Button>
                     </CardActions>
                 </Card>
                 
@@ -220,19 +304,12 @@ const Mypage = (props) => {
                 </CardActions>
                 </Card> */}
                 <div className={matchclasses.root}>
-                    <Tabs defaultActiveKey="gallery1" className="dormtab">
-                        <Tab eventKey="gallery1" title="현재 배팅 현황">
-                            <div className="tab-item-wrapper">
-                                {loadList()}
-                            </div>
-                        </Tab>
-                        <Tab eventKey="gallery2" title="과거 기록">
-                            <div className="tab-item-wrapper">
-                                과거 배팅 기록들..
-                            </div>
-                        </Tab>
-                    </Tabs>
+                    <Typography className={matchclasses.title} gutterBottom>
+                        배팅 기록
+                    </Typography>
+                    {loadList()}
                 </div>
+                
                 <Card className={classes1.root}>
                     <CardContent>
                         <Typography className={classes1.title} color="textSecondary" gutterBottom>

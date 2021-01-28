@@ -19,7 +19,7 @@ Login page
 
 function Login(props){
     const [state, setState] = useState({userid:"",password:"", login:"waitting input."});
-
+    
     document.title = `Login`;
 
     const dispatch = useDispatch();
@@ -102,7 +102,6 @@ function Login(props){
                 </div>
             </div>
         </div>
-        
     );
 }
 
