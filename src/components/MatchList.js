@@ -188,7 +188,7 @@ const AlertDialog = (props) => {
     };
 
     const setBettingBtn = () => {
-
+        
         const nowTime = new Date();
         let matchTime = props.match.match_date;
         let MT = new Date(matchTime);
