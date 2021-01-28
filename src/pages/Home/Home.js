@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Link, useLocation } from 'react-router-dom';
 import styles from './Home.css';
 import Login from '../Login/Login';
-import Signup from '../Login/Signup';
 import 'react-bootstrap/Navbar';
 import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
