@@ -13,6 +13,7 @@ Login page
     - Login 를 하기 위한 회원가입 페이지도 만들어야 함.(POST api 만들어야 하고)
     - Login 
 */
+
 function Login(props){
     const [state, setState] = useState({userid:"",password:"", login:"waitting input."});
 
@@ -66,30 +67,21 @@ function Login(props){
 
     return (
         <form class="form-form">
-            <h3>Sign In</h3>
             <div class="form-group">
                 <label for="id">Id</label>
                 {/*
                 <input type="email" class="form-control" id="id" aria-describedby="emailHelp">
                     */}
                 <input type='text' class="form-control" value={state.userid } id="id" onChange={e => setState({...state, userid:e.target.value})}/>
-                <small id="help" class="form-text text-muted">hi.helpmessagetest</small>
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
                 <input type='text' class="form-control" value={state.password } onChange={e => setState({...state, password:e.target.value})}/>
                 {/*<input type="password" class="form-control" id="exampleInputPassword1"> */}
             </div>
-            <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-            </div>
-                <button type="submit" class="btn btn-primary" onClick={LoginCheck}>Submit</button>
+            <button type="submit" class="btn btn-primary" onClick={LoginCheck}>Submit</button>
             <p className="form-group">
                 <Link to='/signup' class="nav-link">Signup</Link>
-            </p>
-            <p className="forgot-password text-right">
-                로그인 성공?? <b>{state.login}</b>
             </p>
         </form>
         

@@ -178,78 +178,79 @@ const Mypage = (props) => {
     }
 
     return(
-        <div className="row">
-            <Navbar/>                
-            
-            <Card className={classes.root}>
+        <div>
+            <Navbar/>
+            <div className="row">
+                <Card className={classes.root}>
+                    <CardContent>
+                        <Typography className={classes.title} color="textSecondary" gutterBottom>
+                            회원 정보
+                        </Typography>
+                        <Typography variant="h5" component="h2">
+                            {user_name}
+                        </Typography>
+                        <Typography className={classes.pos} color="textSecondary">
+                            보유 코인: {user_coin}coin
+                        </Typography>
+                    </CardContent>
+                    <CardActions>
+                        <Button size="small">코인 1만 개 충전</Button>
+                    </CardActions>
+                </Card>
+                
+                {/* <Card className={classes2.root}>
                 <CardContent>
-                    <Typography className={classes.title} color="textSecondary" gutterBottom>
-                        회원 정보
+                    <Typography className={classes2.title} color="textSecondary" gutterBottom>
+                        불법 토토 예비 희생양
                     </Typography>
                     <Typography variant="h5" component="h2">
-                        {user_name}
+                        이현민
                     </Typography>
-                    <Typography className={classes.pos} color="textSecondary">
-                        보유 코인: {user_coin}coin
+                    <Typography className={classes2.pos} color="textSecondary">
+                        보유 코인: 500 Coin
+                    </Typography>
+                    <Typography variant="body2" component="p">
+                        3. 300만원
+                    <br />
+                        {'"위험해"'}
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size="small">코인 1만 개 충전</Button>
+                    <Button size="small">~!!~</Button>
                 </CardActions>
-            </Card>
-            
-            {/* <Card className={classes2.root}>
-            <CardContent>
-                <Typography className={classes2.title} color="textSecondary" gutterBottom>
-                    불법 토토 예비 희생양
-                </Typography>
-                <Typography variant="h5" component="h2">
-                    이현민
-                </Typography>
-                <Typography className={classes2.pos} color="textSecondary">
-                    보유 코인: 500 Coin
-                </Typography>
-                <Typography variant="body2" component="p">
-                    3. 300만원
-                <br />
-                    {'"위험해"'}
-                </Typography>
-            </CardContent>
-            <CardActions>
-                <Button size="small">~!!~</Button>
-            </CardActions>
-            </Card> */}
-            <div className={matchclasses.root}>
-                <Tabs defaultActiveKey="gallery1" className="dormtab">
-                    <Tab eventKey="gallery1" title="현재 배팅 현황">
-                        <div className="tab-item-wrapper">
-                            {loadList()}
-                        </div>
-                    </Tab>
-                    <Tab eventKey="gallery2" title="과거 기록">
-                        <div className="tab-item-wrapper">
-                            과거 배팅 기록들..
-                        </div>
-                    </Tab>
-                </Tabs>
+                </Card> */}
+                <div className={matchclasses.root}>
+                    <Tabs defaultActiveKey="gallery1" className="dormtab">
+                        <Tab eventKey="gallery1" title="현재 배팅 현황">
+                            <div className="tab-item-wrapper">
+                                {loadList()}
+                            </div>
+                        </Tab>
+                        <Tab eventKey="gallery2" title="과거 기록">
+                            <div className="tab-item-wrapper">
+                                과거 배팅 기록들..
+                            </div>
+                        </Tab>
+                    </Tabs>
+                </div>
+                <Card className={classes1.root}>
+                    <CardContent>
+                        <Typography className={classes1.title} color="textSecondary" gutterBottom>
+                            광고
+                        </Typography>
+                        <Typography variant="h5" component="h2">
+                            ToToNoNo
+                        </Typography>
+                        <Typography className={classes1.pos} color="textSecondary">
+                            중학생한테
+                        </Typography>
+                        <Typography variant="body2" component="p">
+                            털렸쥬?
+                        </Typography>
+                    </CardContent>
+                </Card>
             </div>
-            <Card className={classes1.root}>
-                <CardContent>
-                    <Typography className={classes1.title} color="textSecondary" gutterBottom>
-                        광고
-                    </Typography>
-                    <Typography variant="h5" component="h2">
-                        ToToNoNo
-                    </Typography>
-                    <Typography className={classes1.pos} color="textSecondary">
-                        중학생한테
-                    </Typography>
-                    <Typography variant="body2" component="p">
-                        털렸쥬?
-                    </Typography>
-                </CardContent>
-            </Card>
-        </div>    
+        </div>
     )
 }
 export default Mypage;

@@ -123,58 +123,60 @@ const Home = (props) => {
 
 
     return (
-        <div className="row">
+        <div>
             <Navbar/>
-            {/* 광고 */}
-            <Card className={classes.root}>
-                <CardContent>
-                    <Typography className={classes.title} color="textSecondary" gutterBottom>
-                        광고
-                    </Typography>
-                    <Typography variant="h5" component="h2">
-                        현민이 컴퓨터
-                    </Typography>
-                    <Typography className={classes.pos} color="textSecondary">
-                        중학생한테
-                    </Typography>
-                    <Typography variant="body2" component="p">
-                        털렸쥬?
-                    <br />
-                        {'"We are wating for you."'}
-                    </Typography>
-                </CardContent>
-                <CardActions>
-                    <Button size="small">Contact Us</Button>
-                </CardActions>
-            </Card>
+            <div className="row">
+                {/* 광고 */}
+                <Card className={classes.root}>
+                    <CardContent>
+                        <Typography className={classes.title} color="textSecondary" gutterBottom>
+                            광고
+                        </Typography>
+                        <Typography variant="h5" component="h2">
+                            현민이 컴퓨터
+                        </Typography>
+                        <Typography className={classes.pos} color="textSecondary">
+                            중학생한테
+                        </Typography>
+                        <Typography variant="body2" component="p">
+                            털렸쥬?
+                        <br />
+                            {'"We are wating for you."'}
+                        </Typography>
+                    </CardContent>
+                    <CardActions>
+                        <Button size="small">Contact Us</Button>
+                    </CardActions>
+                </Card>
 
-            {/* Match */}
-            <ul className="list-group list-group-flush" className={matchclasses.root}> 
-                <MatchList matches={matches} />
-            </ul>
+                {/* Match */}
+                <ul className="list-group list-group-flush" className={matchclasses.root}> 
+                    <MatchList matches={matches} />
+                </ul>
 
-            {/* 광고 */}
-            <Card className={classes.root}>
-                <CardContent>
-                    <Typography className={classes.title} color="textSecondary" gutterBottom>
-                        광고
-                    </Typography>
-                    <Typography variant="h5" component="h2">
-                        현민이 컴퓨터
-                    </Typography>
-                    <Typography className={classes.pos} color="textSecondary">
-                        중학생한테
-                    </Typography>
-                    <Typography variant="body2" component="p">
-                        털렸쥬?
-                    <br />
-                        {'"We are wating for you."'}
-                    </Typography>
-                </CardContent>
-                <CardActions>
-                    <Button size="small">Contact Us</Button>
-                </CardActions>
-            </Card>
+                {/* 광고 */}
+                <Card className={classes.root}>
+                    <CardContent>
+                        <Typography className={classes.title} color="textSecondary" gutterBottom>
+                            광고
+                        </Typography>
+                        <Typography variant="h5" component="h2">
+                            현민이 컴퓨터
+                        </Typography>
+                        <Typography className={classes.pos} color="textSecondary">
+                            중학생한테
+                        </Typography>
+                        <Typography variant="body2" component="p">
+                            털렸쥬?
+                        <br />
+                            {'"We are wating for you."'}
+                        </Typography>
+                    </CardContent>
+                    <CardActions>
+                        <Button size="small">Contact Us</Button>
+                    </CardActions>
+                </Card>
+            </div>
         </div>
     )
 }

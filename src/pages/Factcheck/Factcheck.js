@@ -120,10 +120,8 @@ const Factcheck = (props) => {
     }, []);
 
     return(
-        <div className="row">
-
+        <div>
             <Navbar/>
-
         </div>         
     )
 }
