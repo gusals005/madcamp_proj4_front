@@ -145,15 +145,15 @@ const Factcheck = (props) => {
         return(
             <div>
                 <Navbar/>
-                <Card className={classes.root}>
+                <Card className={classes.root} style={{border: 'solid', borderColor: '#4CAF50', backgroundColor: '#212529'}}>
                     <CardContent>
-                        <Typography className={classes.title} color="textSecondary" gutterBottom>
+                        <Typography className={classes.title} color="textSecondary" gutterBottom style={{fontSize: 30, color: 'white'}}>
                             즐거웠나요?
                         </Typography>
                         <div class="row justify-content-around">
                             <div class="col-sm-4" >
                                 <div className = {class_margin.root}>
-                                    <div class="card">
+                                    <div class="card" style={{padding: 5, margin:0, backgroundColor: '#555555', color: 'white'}}>
                                         <div class="card-body">
                                             <h5 class="card-title">국민 체육 진흥법 제48조 제3호</h5>
                                             <p class="card-text">불법 토토 이용자는 5년 이하의 징역이나 5천만원 이하의 벌금에 처한다.</p>
@@ -163,7 +163,7 @@ const Factcheck = (props) => {
                             </div>
                             <div class="col-sm-4" >
                                 <div className = {class_margin.root}>
-                                    <div class="card">
+                                    <div class="card" style={{padding: 5, margin:0, backgroundColor: '#555555', color: 'white'}}>
                                         <div class="card-body">
                                             <h5 class="card-title">수수료</h5>
                                             <p class="card-text">이 사이트의 수수료는 12프로지만 다른 사이트 운영자는 평균 30~40프로의 수수료를 가져간다.</p>
@@ -172,7 +172,7 @@ const Factcheck = (props) => {
                                 </div>
                             </div><div class="col-sm-4" >
                                 <div className = {class_margin.root}>
-                                    <div class="card">
+                                    <div class="card" style={{padding: 5, margin:0, backgroundColor: '#555555', color: 'white'}}>
                                         <div class="card-body">
                                             <h5 class="card-title">먹튀</h5>
                                             <p class="card-text">경찰에 잡힌 스포츠 도박 운영자들의 말을 종합하면 불법 사이트 가운데 70%가 돈을 갖고 사라지는 이른바 '먹튀' 사이트로 추산된다.</p>
@@ -184,7 +184,7 @@ const Factcheck = (props) => {
                         <div class="row justify-content-around">
                             <div class="col-sm-4" >
                                 <div className = {class_margin.root}>
-                                    <div class="card">
+                                    <div class="card" style={{padding: 5, margin:0, backgroundColor: '#555555', color: 'white'}}>
                                         <div class="card-body">
                                             <h5 class="card-title">당신이 될 수도 있습니다.</h5>
                                             <p class="card-text">(충격 실화) “8년간 5000만원 잃었어요” 불법 온라인 도박의 늪, ‘좀비’가 된 청년들</p>
@@ -194,7 +194,7 @@ const Factcheck = (props) => {
                             </div>
                             <div class="col-sm-4" >
                                 <div className = {class_margin.root}>
-                                    <div class="card">
+                                    <div class="card" style={{padding: 5, margin:0, backgroundColor: '#555555', color: 'white'}}>
                                         <div class="card-body">
                                             <h5 class="card-title">먹튀를 당할 수 있습니다.</h5>
                                             <p class="card-text">원금 {((user_principal)/10)}만원 증발</p>
@@ -203,7 +203,7 @@ const Factcheck = (props) => {
                                 </div>
                             </div><div class="col-sm-4" >
                                 <div className = {class_margin.root}>
-                                    <div class="card">
+                                    <div class="card" style={{padding: 5, margin:0, backgroundColor: '#555555', color: 'white'}}>
                                         <div class="card-body">
                                             <h5 class="card-title">만들지 마세요.</h5>
                                             <p class="card-text">(실제 기사) 대박 욕심 사설토토 개설... 8개월만에 쇠고랑 ‘쪽박’</p>
