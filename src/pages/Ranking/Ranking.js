@@ -65,11 +65,11 @@ const Ranking = (props) => {
                                 서부 컨퍼런스 팀 순위
                             </Typography>
                             <ul class="list-group">
-                                <li class="list-group-item">1. LAL</li>
-                                <li class="list-group-item">2. 유타</li>
-                                <li class="list-group-item">3. LAC</li>
-                                <li class="list-group-item">4. 덴버</li>
-                                <li class="list-group-item">5. 포틀랜드</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>1. LAL</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>2. 유타</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>3. LAC</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>4. 덴버</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>5. 포틀랜드</li>
                             </ul>
                         </CardContent>
                     </Card>
@@ -81,11 +81,11 @@ const Ranking = (props) => {
                                 동부 컨퍼런스 팀 순위
                             </Typography>
                             <ul class="list-group" style={{backgroundColor:'#555555'}}>
-                                <li class="list-group-item">1. 필라델피아</li>
-                                <li class="list-group-item">2. 보스턴</li>
-                                <li class="list-group-item">3. 밀워키</li>
-                                <li class="list-group-item">4. 인디애나</li>
-                                <li class="list-group-item">5. 브루클린</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>1. 필라델피아</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>2. 보스턴</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>3. 밀워키</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>4. 인디애나</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>5. 브루클린</li>
                             </ul>
                         </CardContent>
                     </Card>
@@ -100,11 +100,11 @@ const Ranking = (props) => {
                                 POINTS PER GAME
                             </Typography>
                             <ul class="list-group">
-                                <li class="list-group-item">1.	Milwaukee Bucks	        120.1</li>
-                                <li class="list-group-item">2.	Brooklyn Nets	        119.1</li>
-                                <li class="list-group-item">3.	Denver Nuggets	        116.8</li>
-                                <li class="list-group-item">4.	Washington Wizards	    116.5</li>
-                                <li class="list-group-item">5.	Portland Trail Blazers	115.4</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>1.	Milwaukee Bucks	        120.1</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>2.	Brooklyn Nets	        119.1</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>3.	Denver Nuggets	        116.8</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>4.	Washington Wizards	    116.5</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>5.	Portland Trail Blazers	115.4</li>
                             </ul>
                         </CardContent>
                     </Card>
@@ -116,11 +116,11 @@ const Ranking = (props) => {
                                 REBOUNDS
                             </Typography>
                             <ul class="list-group">
-                                <li class="list-group-item">1.	Utah Jazz	        53</li>
-                                <li class="list-group-item">2.	Washington Wizards	49</li>
-                                <li class="list-group-item">3.	Atlanta Hawks	    46</li>
-                                <li class="list-group-item">3.	LA Clippers	        46</li>
-                                <li class="list-group-item">5.	Houston Rockets	    44</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>1.	Utah Jazz	        53</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>2.	Washington Wizards	49</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>3.	Atlanta Hawks	    46</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>3.	LA Clippers	        46</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>5.	Houston Rockets	    44</li>
                             </ul>
                         </CardContent>
                     </Card>
@@ -132,11 +132,11 @@ const Ranking = (props) => {
                                 ASSISTS
                             </Typography>
                             <ul class="list-group">
-                                <li class="list-group-item">1.	Utah Jazz	        24</li>
-                                <li class="list-group-item">2.	LA Clippers	        23</li>
-                                <li class="list-group-item">3.	Atlanta Hawks	    20</li>
-                                <li class="list-group-item">4.	Washington Wizards	19</li>
-                                <li class="list-group-item">5.	Houston Rockets	    16</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>1.	Utah Jazz	        24</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>2.	LA Clippers	        23</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>3.	Atlanta Hawks	    20</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>4.	Washington Wizards	19</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>5.	Houston Rockets	    16</li>
                             </ul>
                         </CardContent>
                     </Card>
@@ -151,11 +151,11 @@ const Ranking = (props) => {
                                 BLOCKS
                             </Typography>
                             <ul class="list-group">
-                                <li class="list-group-item">1.	Atlanta Hawks	9</li>
-                                <li class="list-group-item">2.	Utah Jazz	    5</li>
-                                <li class="list-group-item">3.	Houston Rockets	4</li>
-                                <li class="list-group-item">3.	LA Clippers	    4</li>
-                                <li class="list-group-item">3.	New York Knicks	4</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>1.	Atlanta Hawks	9</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>2.	Utah Jazz	    5</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>3.	Houston Rockets	4</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>3.	LA Clippers	    4</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>3.	New York Knicks	4</li>
                             </ul>
                         </CardContent>
                     </Card>
@@ -167,11 +167,11 @@ const Ranking = (props) => {
                                 STEALS
                             </Typography>
                             <ul class="list-group">
-                                <li class="list-group-item">1.	Houston Rockets	    13</li>
-                                <li class="list-group-item">2.	LA Clippers	        11</li>
-                                <li class="list-group-item">3.	Atlanta Hawks	    7</li>
-                                <li class="list-group-item">3.	Washington Wizards	7</li>
-                                <li class="list-group-item">5.	New York Knicks	    6</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>1.	Houston Rockets	    13</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>2.	LA Clippers	        11</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>3.	Atlanta Hawks	    7</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>3.	Washington Wizards	7</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>5.	New York Knicks	    6</li>
                             </ul>
                         </CardContent>
                     </Card>
@@ -183,11 +183,11 @@ const Ranking = (props) => {
                                 FIELD GOAL PERCENTAGE
                             </Typography>
                             <ul class="list-group">
-                                <li class="list-group-item">1.	Atlanta Hawks	46.3</li>
-                                <li class="list-group-item">2.	New York Knicks	43.4</li>
-                                <li class="list-group-item">3.	Houston Rockets	42.0</li>
-                                <li class="list-group-item">4.	LA Clippers	    40.4</li>
-                                <li class="list-group-item">5.	Utah Jazz	    40.2</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>1.	Atlanta Hawks	46.3</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>2.	New York Knicks	43.4</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>3.	Houston Rockets	42.0</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>4.	LA Clippers	    40.4</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>5.	Utah Jazz	    40.2</li>
                             </ul>
                         </CardContent>
                     </Card>
@@ -201,11 +201,11 @@ const Ranking = (props) => {
                                 THREE POINTERS MADE
                             </Typography>
                             <ul class="list-group">
-                                <li class="list-group-item">1.	Utah Jazz	    15</li>
-                                <li class="list-group-item">2.	Houston Rockets	12</li>
-                                <li class="list-group-item">3.	Atlanta Hawks	10</li>
-                                <li class="list-group-item">3.	New York Knicks	10</li>
-                                <li class="list-group-item">5.	LA Clippers	    8</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>1.	Utah Jazz	    15</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>2.	Houston Rockets	12</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>3.	Atlanta Hawks	10</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>3.	New York Knicks	10</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>5.	LA Clippers	    8</li>
                             </ul>
                         </CardContent>
                     </Card>
@@ -217,11 +217,11 @@ const Ranking = (props) => {
                                 THREE POINT PERCENTAGE
                             </Typography>
                             <ul class="list-group">
-                                <li class="list-group-item">1.	Atlanta Hawks	38.5</li>
-                                <li class="list-group-item">2.	New York Knicks	37.0</li>
-                                <li class="list-group-item">3.	Houston Rockets	32.4</li>
-                                <li class="list-group-item">4.	Utah Jazz	    31.3</li>
-                                <li class="list-group-item">5.	LA Clippers	    30.8</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>1.	Atlanta Hawks	38.5</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>2.	New York Knicks	37.0</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>3.	Houston Rockets	32.4</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>4.	Utah Jazz	    31.3</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>5.	LA Clippers	    30.8</li>
                             </ul>
                         </CardContent>
                     </Card>
@@ -233,11 +233,11 @@ const Ranking = (props) => {
                                 FREE THROW PERCENTAGE
                             </Typography>
                             <ul class="list-group">
-                                <li class="list-group-item">1.	Atlanta Hawks	    96.0</li>
-                                <li class="list-group-item">2.	LA Clippers	        86.4</li>
-                                <li class="list-group-item">2.	Utah Jazz	        86.4</li>
-                                <li class="list-group-item">4.	Washington Wizards	73.9</li>
-                                <li class="list-group-item">5.	Houston Rockets	    72.4</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>1.	Atlanta Hawks	    96.0</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>2.	LA Clippers	        86.4</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>2.	Utah Jazz	        86.4</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>4.	Washington Wizards	73.9</li>
+                                <li class="list-group-item" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>5.	Houston Rockets	    72.4</li>
                             </ul>
                         </CardContent>
                     </Card>

@@ -94,8 +94,6 @@ const AlertDialog = (props) => {
     
     const dispatch = useDispatch();
 
-    
-
     useEffect(()=>{
         console.log("AFTER",isAipickChecked);
     }, [isAipickChecked])
@@ -184,10 +182,19 @@ const AlertDialog = (props) => {
             setAipick("보유금액이 작아 aipick을 받을 수 없습니다.");
             return;
         }
+        if(isAipickChecked == 1){
+            return;
+        }
 
         if (currentChecked == '') {
           //match 에 aipick을 가져와.
             let pick = props.match.aipick;
+            props.user.coin -= 1000;
+            dispatch(SetCoin({coin:props.user.coin}));
+            const response = axios.post('http://192.249.18.232:8080/user/deletecoin',{
+                user_id:props.user.user_id
+            })
+            console.log(response);
             setAipick(pick);
             console.log("pre" ,isAipickChecked);
             setIsAipickChecked(1);
