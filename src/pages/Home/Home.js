@@ -158,14 +158,14 @@ const Home = (props) => {
                         <Typography className={classes.title} color="textSecondary" gutterBottom>
                             광고
                         </Typography>
-                        <Typography variant="h5" component="h2">
-                            현민이 컴퓨터
+                        <Typography variant="h6" component="h2">
+                            카뱅 333312-34-56789
                         </Typography>
                         <Typography className={classes.pos} color="textSecondary">
-                            중학생한테
+                            입금시 광고 가능
                         </Typography>
                         <Typography variant="body2" component="p">
-                            털렸쥬?
+                            안전한 놀이터
                         <br />
                             {'"We are wating for you."'}
                         </Typography>
@@ -180,7 +180,7 @@ const Home = (props) => {
                 </Card>
 
                 {/* Match */}
-                <ul className="list-group list-group-flush" className={matchclasses.root}style={{padding: 0, border: 'solid', borderColor: '#4CAF50' }}> 
+                <ul className="list-group list-group-flush" className={matchclasses.root} style={{padding: 0, border: 'solid', borderColor: '#4CAF50' }}> 
                     <MatchList matches={matches}/>
                 </ul>
 

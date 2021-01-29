@@ -22,13 +22,13 @@ const useStyles = makeStyles({
       fontSize: 14,
     },
     pos: {
-      marginBottom: 12,
+      marginBottom: 10,
     },
   });
 
   const marginStyles = makeStyles({
     root: {
-        margin: 20,
+        margin: 10,
     },
   });
 
@@ -69,9 +69,9 @@ const Factcheck = (props) => {
         return(
             <div>
                 <Navbar/>
-                <Card className={classes.root}>
+                <Card className={classes.root} style={{border: 'solid', borderColor: '#4CAF50', backgroundColor: '#212529'}}>
                     <CardContent>
-                        <Typography className={classes.title} color="textSecondary" gutterBottom>
+                        <Typography className={classes.title} color="textSecondary" gutterBottom style={{fontSize: 30, color: 'white'}}>
                             만약 당신이 실제 돈으로 토토를 했다면...
                         </Typography>
                         <div class="row justify-content-around">

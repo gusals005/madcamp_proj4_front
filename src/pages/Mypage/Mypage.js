@@ -21,35 +21,38 @@ import imgB from '../../components/material/image_1608796118742.gif';
 
 const useStyles = makeStyles({
     root: {
-        minHeight: 200,
-        maxWidth: 275,
+        minWidth: 275,
+        maxWidth: 300,
+        marginLeft: 100,
+        marginRight: 50,
         marginTop: 50,
-        marginLeft: 50
+        backgroundColor: '#212529',
+        color: 'white'
     },
     bullet: {
-      display: 'inline-block',
-      margin: '0 2px',
-      transform: 'scale(0.8)',
+        display: 'inline-block',
+        margin: '0 2px',
+        transform: 'scale(0.8)',
     },
     title: {
-      fontSize: 18,
+        fontSize: 14,
+        color: 'white'
     },
     pos: {
-      marginBottom: 5,
-      marginTop: 5,
-      padding: 0
-    },
-    body2: {
-
+        marginTop: 12,
+        marginBottom: 12,
+        color: 'white'
     }
-  });
+});
 
 const useStyles1 = makeStyles({
     root: {
         maxWidth: 275,
         minHeight: 470,
         marginTop: 30,
-        marginLeft: 0
+        marginLeft: 0,
+        backgroundColor: '#212529',
+        color: 'white'
     },
     bullet: {
       display: 'inline-block',
@@ -58,11 +61,13 @@ const useStyles1 = makeStyles({
     },
     title: {
       fontSize: 18,
+      color: 'white'
     },
     pos: {
       marginBottom: 5,
       marginTop: 5,
-      padding: 0
+      padding: 0,
+      color: 'white'
     },
 });
 const useStyles2 = makeStyles({
@@ -71,7 +76,8 @@ const useStyles2 = makeStyles({
         padding: 0,
         marginTop: 50,
         marginRight: 50,
-        backgroundColor: 'white'
+        backgroundColor: '#212529',
+        color: 'white'
     },
     bullet: {
       display: 'inline-block',
@@ -80,11 +86,13 @@ const useStyles2 = makeStyles({
     },
     title: {
       fontSize: 18,
+      color: 'white'
     },
     pos: {
       marginBottom: 5,
       marginTop: 5,
-      padding: 0
+      padding: 0,
+      color: 'white'
     },
     body2: {
 
@@ -93,24 +101,28 @@ const useStyles2 = makeStyles({
 
 const matchStyles = makeStyles({
     root: {
-        minWidth: 100,
+        paddingLeft: 0,
+        minWidth: 275,
         maxWidth: 800,
-        marginRight: 50,
         marginLeft: 50,
+        marginright: 50,
         marginTop: 50,
         maxHeight: 700,
         overflowY: "auto",
         '&::-webkit-scrollbar': {
-            width: '0.4em'
+            width: '0.4em',
+            backgroundColor: '#212529',
         },
         '&::-webkit-scrollbar-track': {
             boxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
-            webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)'
+            webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
         },
         '&::-webkit-scrollbar-thumb': {
-            backgroundColor: 'rgba(0,0,0,.1)',
-            outline: '1px solid slategrey'
-        }
+            backgroundColor: '#ffffff',
+            outline: '0px solid slategrey',
+        },
+        backgroundColor: '#00000000',
+        color: 'white'
 
 
     },
@@ -120,8 +132,9 @@ const matchStyles = makeStyles({
         transform: 'scale(0.8)',
     },
     title: {
-        fontSize: 20,
-        color: "#ffffff"
+        fontSize: 30,
+        padding: 10,
+        textAlign: 'center'
     },
     pos: {
         marginBottom: 12,
@@ -195,8 +208,8 @@ const Mypage = (props) => {
                     if (matches[i].can_betting) {
                         return (
                             <div>
-                                <p className="mb-1">경기: {(matches[i].home + 'vs' + matches[i].away)}</p>
-                                <p className="mb-1">배팅: {pred}</p>
+                                <p className="mb-1">{(matches[i].home + 'vs' + matches[i].away)}</p>
+                                <p className="mb-1">예측 팀: {pred}</p>
                             </div>
                         )
                     }
@@ -207,8 +220,8 @@ const Mypage = (props) => {
                         }
                         return (
                             <div>
-                                <p className="mb-1">경기: {(matches[i].home + 'vs' + matches[i].away)}</p>
-                                <p className="mb-1">배팅: {pred} ({result})</p>
+                                <p className="mb-1">{(matches[i].home + 'vs' + matches[i].away)}</p>
+                                <p className="mb-1">예측 팀: {pred} ({result})</p>
                             </div>
                         )
                     }
@@ -226,12 +239,12 @@ const Mypage = (props) => {
             if (item.prediction == "WIN") pred = "Home"
             else pred = "Away"
             return(
-                <div className="list-group-item list-group-item-action">
-                    <div className="d-flex w-100 justify-content-start">
+                <div className="list-group-item list-group-item-action" style={{backgroundColor: "#212529", color: "#ffffff", border: 'solid', borderColor: "#999999", borderTop: 'none', borderLeft: "none", borderRight: 'none'}}>
+                    <div className="d-flex w-100 justify-content-between">
                         <small>{match_date}</small>
                     </div>
                     {find_match(item, pred)}
-                    <small>배팅 코인: {item.amount}</small>
+                    <small>{item.amount} 코인 배팅</small>
                 </div>
             )
         })
@@ -271,12 +284,9 @@ const Mypage = (props) => {
         <div>
             <Navbar/>
             <div className="row">
-                <Card className={classes.root}>
+                <Card className={classes.root} style={{border: 'solid', borderColor: '#4CAF50'}}>
                     <CardContent>
-                        <Typography className={classes.title} color="textSecondary" gutterBottom>
-                            회원 정보
-                        </Typography>
-                        <Typography variant="h5" component="h2">
+                        <Typography variant="h4" component="h2">
                             {user_name}
                         </Typography>
                         <Typography className={classes.pos} color="textSecondary">
@@ -287,52 +297,31 @@ const Mypage = (props) => {
                         </Typography>
                     </CardContent>
                     <CardActions>
-                        <Button size="small" onClick={addCoin}>코인 1만 개 충전</Button>
-                        <Button size="small" onClick={deleteUser}>회원탈퇴</Button>
+                        <Button size="small" onClick={addCoin} style={{color: 'white', border: 'solid'}}>코인 1만 개 충전</Button>
+                        <Button size="small" onClick={deleteUser} style={{color: 'white', border: 'solid'}}>회원탈퇴</Button>
                     </CardActions>
                 </Card>
-                
-                {/* <Card className={classes2.root}>
-                <CardContent>
-                    <Typography className={classes2.title} color="textSecondary" gutterBottom>
-                        불법 토토 예비 희생양
-                    </Typography>
-                    <Typography variant="h5" component="h2">
-                        이현민
-                    </Typography>
-                    <Typography className={classes2.pos} color="textSecondary">
-                        보유 코인: 500 Coin
-                    </Typography>
-                    <Typography variant="body2" component="p">
-                        3. 300만원
-                    <br />
-                        {'"위험해"'}
-                    </Typography>
-                </CardContent>
-                <CardActions>
-                    <Button size="small">~!!~</Button>
-                </CardActions>
-                </Card> */}
-                <div className={matchclasses.root}>
-                    <Typography className={matchclasses.title} gutterBottom>
+
+                <div className={matchclasses.root} style={{padding: 0, border: 'solid', borderColor: '#4CAF50' }}>
+                    <Typography className={matchclasses.title}>
                         배팅 기록
                     </Typography>
                     {loadList()}
                 </div>
                 
-                <Card className={classes1.root}>
+                <Card className={classes.root} style={{border: 'solid', borderColor: '#4CAF50'}}>
                     <CardContent>
-                        <Typography className={classes1.title} color="textSecondary" gutterBottom>
+                        <Typography className={classes.title} color="textSecondary" gutterBottom>
                             광고
                         </Typography>
                         <Typography variant="h5" component="h2">
-                            ToToNoNo
+                            동원참치
                         </Typography>
                         <Typography className={classes1.pos} color="textSecondary">
-                            중학생한테
+                            이건 맛의
                         </Typography>
                         <Typography variant="body2" component="p">
-                            털렸쥬?
+                            대참치!
                         </Typography>
                     </CardContent>
                     <div className='row align-items-center'>

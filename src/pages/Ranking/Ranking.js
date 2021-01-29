@@ -16,12 +16,7 @@ import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles({
     root: {
-        
-        minWidth: 275,
-        marginTop: 30,
-        marginLeft: 30,
-        marginBottom: 30,
-        
+        minWidth: 200
     },
     bullet: {
         display: 'inline-block',
@@ -30,86 +25,6 @@ const useStyles = makeStyles({
         
     },
     title: {
-        backgroundColor: "#FFDB5855",
-        fontSize: 14,
-    },
-    pos: {
-        marginBottom: 12,
-    },
-});
-
-const useStyles1 = makeStyles({
-    root: {
-        minWidth: 275,
-        marginTop: 30,
-        marginRight: 30,
-        marginBottom: 30
-    },
-    bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
-    },
-    title: {
-        backgroundColor: "#9EF04855",
-        fontSize: 14,
-    },
-    pos: {
-        marginBottom: 12,
-    },
-});
-
-
-const useStylesL = makeStyles({
-    root: {
-        minWidth: 275,
-        marginBottom: 30,
-        marginLeft: 30
-    },
-    bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
-    },
-    title: {
-        backgroundColor: "#CDECFA55",
-        fontSize: 14,
-    },
-    pos: {
-        marginBottom: 12,
-    },
-});
-const useStylesC = makeStyles({
-    root: {
-        minWidth: 275,
-        marginBottom: 30,
-    },
-    bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
-    },
-    title: {
-        backgroundColor: "#CDECFA55",
-        fontSize: 14,
-    },
-    pos: {
-        marginBottom: 12,
-    },
-});
-const useStylesR = makeStyles({
-    root: {
-        minWidth: 275,
-        marginBottom: 30,
-        marginRight: 30
-    },
-    bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
-    },
-    title: {
-        backgroundColor: "#CDECFA55",
         fontSize: 14,
     },
     pos: {
@@ -119,17 +34,6 @@ const useStylesR = makeStyles({
 
 const Ranking = (props) => {
     const classes = useStyles();
-    const classes1 = useStyles1();
-
-    const classesL1 = useStylesL();
-    const classesL2 = useStylesL();
-    const classesL3 = useStylesL();
-    const classesC1 = useStylesC();
-    const classesC2 = useStylesC();
-    const classesC3 = useStylesC();
-    const classesR1 = useStylesR();
-    const classesR2 = useStylesR();
-    const classesR3 = useStylesR();
 
     const bull = <span className={classes.bullet}>•</span>;
     const token = useSelector(state => {
@@ -153,11 +57,11 @@ const Ranking = (props) => {
     return (
         <div class="col">
             <Navbar/>
-            <div class="row">
+            <div class="row" style={{padding: '30px'}}>
                 <div class="col-sm-6">
-                    <Card className={classes.root}>
+                    <Card className={classes.root} style={{border: 'solid', borderColor: '#4CAF50', backgroundColor: '#212529'}}>
                         <CardContent>
-                            <Typography className={classes.title} color="textSecondary" gutterBottom>
+                            <Typography className={classes.title} color="textSecondary" gutterBottom style={{fontSize: 30, color: 'white'}}>
                                 서부 컨퍼런스 팀 순위
                             </Typography>
                             <ul class="list-group">
@@ -171,12 +75,12 @@ const Ranking = (props) => {
                     </Card>
                 </div>
                 <div class="col-sm-6">
-                    <Card className={classes1.root}>
+                    <Card className={classes.root} style={{border: 'solid', borderColor: '#4CAF50', backgroundColor: '#212529'}}>
                         <CardContent>
-                            <Typography className={classes1.title} color="textSecondary" gutterBottom>
+                            <Typography className={classes.title} color="textSecondary" gutterBottom style={{fontSize: 30, color: 'white'}}>
                                 동부 컨퍼런스 팀 순위
                             </Typography>
-                            <ul class="list-group">
+                            <ul class="list-group" style={{backgroundColor:'#555555'}}>
                                 <li class="list-group-item">1. 필라델피아</li>
                                 <li class="list-group-item">2. 보스턴</li>
                                 <li class="list-group-item">3. 밀워키</li>
@@ -188,11 +92,11 @@ const Ranking = (props) => {
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row" style={{padding: '30px'}}>
                 <div class="col-sm-4">
-                    <Card className={classesL1.root}>
+                    <Card className={classes.root} style={{border: 'solid', borderColor: '#4CAF50', backgroundColor: '#212529'}}>
                         <CardContent>
-                            <Typography className={classesL1.title} color="textSecondary" gutterBottom>
+                            <Typography className={classes.title} color="textSecondary" gutterBottom style={{fontSize: 30, color: 'white'}}>
                                 POINTS PER GAME
                             </Typography>
                             <ul class="list-group">
@@ -206,9 +110,9 @@ const Ranking = (props) => {
                     </Card>
                 </div>
                 <div class="col-sm-4">
-                    <Card className={classesC1.root}>
+                    <Card className={classes.root} style={{border: 'solid', borderColor: '#4CAF50', backgroundColor: '#212529'}}>
                         <CardContent>
-                            <Typography className={classesC1.title} color="textSecondary" gutterBottom>
+                            <Typography className={classes.title} color="textSecondary" gutterBottom style={{fontSize: 30, color: 'white'}}>
                                 REBOUNDS
                             </Typography>
                             <ul class="list-group">
@@ -222,9 +126,9 @@ const Ranking = (props) => {
                     </Card>
                 </div>
                 <div class="col-sm-4">
-                    <Card className={classesR1.root}>
+                    <Card className={classes.root} style={{border: 'solid', borderColor: '#4CAF50', backgroundColor: '#212529'}}>
                         <CardContent>
-                            <Typography className={classesR1.title} color="textSecondary" gutterBottom>
+                            <Typography className={classes.title} color="textSecondary" gutterBottom style={{fontSize: 30, color: 'white'}}>
                                 ASSISTS
                             </Typography>
                             <ul class="list-group">
@@ -239,11 +143,11 @@ const Ranking = (props) => {
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row" style={{padding: '30px'}}>
                 <div class="col-sm-4">
-                    <Card className={classesL2.root}>
+                    <Card className={classes.root} style={{border: 'solid', borderColor: '#4CAF50', backgroundColor: '#212529'}}>
                         <CardContent>
-                            <Typography className={classesL2.title} color="textSecondary" gutterBottom>
+                            <Typography className={classes.title} color="textSecondary" gutterBottom style={{fontSize: 30, color: 'white'}}>
                                 BLOCKS
                             </Typography>
                             <ul class="list-group">
@@ -257,9 +161,9 @@ const Ranking = (props) => {
                     </Card>
                 </div>
                 <div class="col-sm-4">
-                    <Card className={classesC2.root}>
+                    <Card className={classes.root} style={{border: 'solid', borderColor: '#4CAF50', backgroundColor: '#212529'}}>
                         <CardContent>
-                            <Typography className={classesC2.title} color="textSecondary" gutterBottom>
+                            <Typography className={classes.title} color="textSecondary" gutterBottom style={{fontSize: 30, color: 'white'}}>
                                 STEALS
                             </Typography>
                             <ul class="list-group">
@@ -273,9 +177,9 @@ const Ranking = (props) => {
                     </Card>
                 </div>
                 <div class="col-sm-4">
-                    <Card className={classesR2.root}>
+                    <Card className={classes.root} style={{border: 'solid', borderColor: '#4CAF50', backgroundColor: '#212529'}}>
                         <CardContent>
-                            <Typography className={classesR2.title} color="textSecondary" gutterBottom>
+                            <Typography className={classes.title} color="textSecondary" gutterBottom style={{fontSize: 30, color: 'white'}}>
                                 FIELD GOAL PERCENTAGE
                             </Typography>
                             <ul class="list-group">
@@ -289,11 +193,11 @@ const Ranking = (props) => {
                     </Card>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style={{padding: '30px'}}>
                 <div class="col-sm-4">
-                    <Card className={classesL3.root}>
+                    <Card className={classes.root} style={{border: 'solid', borderColor: '#4CAF50', backgroundColor: '#212529'}}>
                         <CardContent>
-                            <Typography className={classesL3.title} color="textSecondary" gutterBottom>
+                            <Typography className={classes.title} color="textSecondary" gutterBottom style={{fontSize: 30, color: 'white'}}>
                                 THREE POINTERS MADE
                             </Typography>
                             <ul class="list-group">
@@ -307,9 +211,9 @@ const Ranking = (props) => {
                     </Card>
                 </div>
                 <div class="col-sm-4">
-                    <Card className={classesC3.root}>
+                    <Card className={classes.root} style={{border: 'solid', borderColor: '#4CAF50', backgroundColor: '#212529'}}>
                         <CardContent>
-                            <Typography className={classesC3.title} color="textSecondary" gutterBottom>
+                            <Typography className={classes.title} color="textSecondary" gutterBottom style={{fontSize: 30, color: 'white'}}>
                                 THREE POINT PERCENTAGE
                             </Typography>
                             <ul class="list-group">
@@ -323,9 +227,9 @@ const Ranking = (props) => {
                     </Card>
                 </div>
                 <div class="col-sm-4">
-                    <Card className={classesR3.root}>
+                    <Card className={classes.root} style={{border: 'solid', borderColor: '#4CAF50', backgroundColor: '#212529'}}>
                         <CardContent>
-                            <Typography className={classesR3.title} color="textSecondary" gutterBottom>
+                            <Typography className={classes.title} color="textSecondary" gutterBottom style={{fontSize: 30, color: 'white'}}>
                                 FREE THROW PERCENTAGE
                             </Typography>
                             <ul class="list-group">
