@@ -65,9 +65,21 @@ const Totoking = (props) => {
     const loadList = () => {
         return state.users.map((item) => {
             return(
-                <div className="list-group-item list-group-item-action">
-                    <p className="mb-1">이름: {item.name}</p>
-                    <small>수익률: {((item.coin-item.principal)/item.principal*100).toFixed(2)}%</small>
+                <div className="list-group-item list-group-item-action" style={{padding: 10, margin:0, backgroundColor: '#555555', color: 'white'}}>
+                    <div className="row justify-content-start"style={{padding: 0, margin:0}}>
+                        <div class="col align-self-end" style={{maxWidth: 36, padding: 0, margin:0}}>
+                            <small style={{fontSize: 12, maxWidth: 36, padding: 0, margin:0}}>이름: </small>
+                        </div>
+                        <div class="col align-self-end" style={{maxWidth: 60, padding: 0, margin:0}}>
+                            <p className="mb-1" style={{fontSize: 20, maxWidth: 60, padding: 0, marginBottom:0}}>{item.name}</p>
+                        </div>
+                        <div class="col align-self-end" style={{maxWidth: 50, padding: 0, marginLeft: 100}}>
+                            <small style={{fontSize: 12, maxWidth: 40, padding: 0, margin:0}}>수익률: </small>
+                        </div>
+                        <div class="col align-self-end" style={{maxWidth: 60, padding: 0, margin:0}}>
+                            <p className="mb-1" style={{fontSize: 20, maxWidth: 60, padding: 0, margin:0}}>{((item.coin-item.principal)/item.principal*100).toFixed(2)}%</p>
+                        </div>
+                    </div>
                 </div>
             )
         })
@@ -76,10 +88,10 @@ const Totoking = (props) => {
     return(
         <div>
             <Navbar/>
-            <Card className={classes.root}>
+            <Card className={classes.root} style={{border: 'solid', borderColor: '#4CAF50', backgroundColor: '#212529'}}>
             <CardContent>
-                <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    금주의 토토킹
+                <Typography className={classes.title} color="textSecondary" gutterBottom style={{fontSize: 30, color: 'white'}}>
+                    금주의 토토왕
                 </Typography>
                 <Typography variant="h5" component="h2">
                     {loadList()}
